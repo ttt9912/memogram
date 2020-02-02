@@ -1,7 +1,16 @@
-<ul>
-  <li *ngFor="let deadline of deadlines">
-    <a routerLink="/detail/{{deadline.uuid}}">
-      {{deadline.title}}
-    </a>
-  </li>
-</ul>
+<div *ngIf=deadlinesCall.succesful>
+  <ul>
+    <li *ngFor="let deadline of deadlines">
+      <a routerLink="/detail/{{deadline.uuid}}">
+        {{deadline.title}}
+      </a>
+    </li>
+  </ul>
+</div>
+
+<p-progressSpinner *ngIf="deadlinesCall.active"></p-progressSpinner>
+
+<div *ngIf=deadlinesCall.error>
+  ERROR! {{deadlinesCall.error}}
+</div>
+

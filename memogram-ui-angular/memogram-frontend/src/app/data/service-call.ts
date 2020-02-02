@@ -1,6 +1,6 @@
 import {HttpErrorResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {tap} from 'rxjs/operators';
+import {delay, tap} from 'rxjs/operators';
 
 export class ServiceCall<T> {
   active: boolean = false;
@@ -12,6 +12,7 @@ export class ServiceCall<T> {
     this.start();
 
     this.observable = call.pipe(
+      delay(3000),
       tap(
         next => {
           this.success();
