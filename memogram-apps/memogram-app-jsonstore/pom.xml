@@ -20,6 +20,10 @@
             <groupId>ch.ttt</groupId>
             <artifactId>memogram-json-store</artifactId>
         </dependency>
+        <dependency>
+            <groupId>ch.ttt</groupId>
+            <artifactId>memogram-ui-angular</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
