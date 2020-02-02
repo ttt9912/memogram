@@ -1,4 +1,4 @@
-package ch.ttt.memogram.jsonstore.common;
+package ch.ttt.memogram.service.abstractions;
 
 import java.util.List;
 import java.util.stream.Collectors;

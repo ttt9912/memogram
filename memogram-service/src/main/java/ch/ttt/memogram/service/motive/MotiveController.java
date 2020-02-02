@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/motives")
-public class MotiveController extends DomainController<Motive> {
+public class MotiveController extends DomainController<Motive, MotiveDTO> {
 
     public MotiveController(final MotiveService motiveService) {
-        super(motiveService);
+        super(motiveService, null, null);
     }
 }

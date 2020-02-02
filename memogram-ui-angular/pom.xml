@@ -20,7 +20,7 @@
                 <configuration>
                     <nodeVersion>v10.13.0</nodeVersion>
                     <npmVersion>6.13.1</npmVersion>
-                    <workingDirectory>edurion-frontend/</workingDirectory>
+                    <workingDirectory>memogram-frontend/</workingDirectory>
                 </configuration>
                 <executions>
                     <execution>

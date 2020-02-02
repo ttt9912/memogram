@@ -2,10 +2,9 @@ package ch.ttt.memogram.jsonstore.motive.convert;
 
 import ch.ttt.memogram.domain.motive.Motive;
 import ch.ttt.memogram.domain.tag.Tag;
-import ch.ttt.memogram.jsonstore.common.Converter;
+import ch.ttt.memogram.jsonstore.abstractions.Converter;
 import ch.ttt.memogram.jsonstore.motive.MotiveJsonDTO;
 import ch.ttt.memogram.jsonstore.motive.TagJsonDTO;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -2,7 +2,7 @@ package ch.ttt.memogram.jsonstore.motive;
 
 import ch.ttt.memogram.business.abstractions.DomainRepository;
 import ch.ttt.memogram.domain.motive.Motive;
-import ch.ttt.memogram.jsonstore.common.JsonStore;
+import ch.ttt.memogram.jsonstore.abstractions.JsonStore;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

@@ -1,5 +1,7 @@
-package ch.ttt.memogram.jsonstore.common;
+package ch.ttt.memogram.jsonstore.abstractions;
 
+import ch.ttt.memogram.jsonstore.common.JsonExportService;
+import ch.ttt.memogram.jsonstore.common.JsonImportService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
