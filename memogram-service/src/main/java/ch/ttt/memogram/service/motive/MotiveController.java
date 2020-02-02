@@ -2,26 +2,15 @@ package ch.ttt.memogram.service.motive;
 
 import ch.ttt.memogram.business.motive.MotiveService;
 import ch.ttt.memogram.domain.motive.Motive;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import ch.ttt.memogram.service.abstractions.DomainController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/motives")
-public class MotiveController {
-    private final MotiveService motiveService;
+public class MotiveController extends DomainController<Motive> {
 
     public MotiveController(final MotiveService motiveService) {
-        this.motiveService = motiveService;
-    }
-
-    @GetMapping
-    public List<Motive> findAll() {
-        return motiveService.findAll();
-    }
-
-    @PostMapping
-    public void create(@RequestBody final Motive motive){
-        motiveService.save(motive);
+        super(motiveService);
     }
 }

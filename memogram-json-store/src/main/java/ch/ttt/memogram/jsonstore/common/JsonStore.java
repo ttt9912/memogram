@@ -1,6 +1,5 @@
-package ch.ttt.memogram.jsonstore.store;
+package ch.ttt.memogram.jsonstore.common;
 
-import ch.ttt.memogram.jsonstore.common.Converter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

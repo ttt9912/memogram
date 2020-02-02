@@ -1,4 +1,4 @@
-package ch.ttt.memogram.jsonstore.store;
+package ch.ttt.memogram.jsonstore.common;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;

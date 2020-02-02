@@ -1,27 +1,16 @@
 package ch.ttt.memogram.service.deadline;
 
-import ch.ttt.memogram.business.deadline.DeadlineService;
+import ch.ttt.memogram.business.abstractions.DomainService;
 import ch.ttt.memogram.domain.deadline.Deadline;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import ch.ttt.memogram.service.abstractions.DomainController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/deadlines")
-public class DeadlineController {
-    private final DeadlineService deadlineService;
+public class DeadlineController extends DomainController<Deadline> {
 
-    public DeadlineController(final DeadlineService deadlineService) {
-        this.deadlineService = deadlineService;
-    }
-
-    @GetMapping
-    public List<Deadline> findAll() {
-        return deadlineService.findAll();
-    }
-
-    @PostMapping
-    public void create(@RequestBody final Deadline deadline) {
-        deadlineService.save(deadline);
+    public DeadlineController(final DomainService<Deadline> service) {
+        super(service);
     }
 }

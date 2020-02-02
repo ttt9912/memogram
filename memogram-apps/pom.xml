@@ -10,30 +10,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>memogram-apps</artifactId>
-
-    <dependencies>
-        <dependency>
-            <groupId>ch.ttt</groupId>
-            <artifactId>memogram-service</artifactId>
-        </dependency>
-        <!--
-        <dependency>
-            <groupId>ch.ttt</groupId>
-            <artifactId>memogram-data-jpa</artifactId>
-        </dependency>
-        -->
-        <dependency>
-            <groupId>ch.ttt</groupId>
-            <artifactId>memogram-json-store</artifactId>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    <packaging>pom</packaging>
+    <modules>
+        <module>memogram-app-jsonstore</module>
+    </modules>
 </project>

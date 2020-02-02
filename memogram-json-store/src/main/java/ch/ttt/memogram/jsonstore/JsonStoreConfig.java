@@ -1,10 +1,10 @@
 package ch.ttt.memogram.jsonstore;
 
 import ch.ttt.memogram.domain.motive.Motive;
+import ch.ttt.memogram.jsonstore.common.JsonStore;
 import ch.ttt.memogram.jsonstore.motive.MotiveJsonDTO;
 import ch.ttt.memogram.jsonstore.motive.convert.DTOToMotive;
 import ch.ttt.memogram.jsonstore.motive.convert.MotiveToDTO;
-import ch.ttt.memogram.jsonstore.store.JsonStore;
 import org.mapstruct.factory.Mappers;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
