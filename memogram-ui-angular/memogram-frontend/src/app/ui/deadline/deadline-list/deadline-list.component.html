@@ -1,0 +1,7 @@
+<ul>
+  <li *ngFor="let deadline of deadlines">
+    <a routerLink="/detail/{{deadline.uuid}}">
+      {{deadline.title}}
+    </a>
+  </li>
+</ul>

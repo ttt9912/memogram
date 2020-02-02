@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {DeadlineService} from '../../../data/deadline/deadline.service';
+import {DeadlineService} from '../../../business/deadline/deadline.service';
+import {Deadline} from '../../../business/deadline/deadline';
 
 @Component({
   selector: 'app-deadline-list',
@@ -7,6 +8,7 @@ import {DeadlineService} from '../../../data/deadline/deadline.service';
   styleUrls: ['./deadline-list.component.scss']
 })
 export class DeadlineListComponent implements OnInit {
+  private deadlines: Deadline[];
 
   constructor(private deadlineService: DeadlineService) {
   }
@@ -14,7 +16,7 @@ export class DeadlineListComponent implements OnInit {
   ngOnInit() {
     console.log('starting get');
     this.deadlineService.getDeadlines().observable
-      .subscribe(res => console.log(res));
+      .subscribe(res => this.deadlines = res);
   }
 
 }
