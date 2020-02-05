@@ -21,53 +21,6 @@
   </div>
 </div>
 
-<!---->
-<div *ngIf=deadlinesCall.succesful>
-  <div *ngFor="let deadline of deadlines">
-    <p-panel>
-      <p-header (click)="showDetail(deadline.uuid)" class="panel">
-        {{deadline.title}}
-      </p-header>
-      <div>
-        <div>
-          {{deadline.deadline | date}}
-        </div>
-        <div class="small-font">
-          {{deadline.uuid}}
-        </div>
-      </div>
-      <p-footer>
-        <a class="hyperlink"
-           routerLink="/delete/{{deadline.uuid}}">Delete</a>
-      </p-footer>
-    </p-panel>
-    <div class="space"></div>
-  </div>
-</div>
-<div *ngIf=deadlinesCall.succesful>
-  <div *ngFor="let deadline of deadlines">
-    <p-panel>
-      <p-header (click)="showDetail(deadline.uuid)" class="panel">
-        {{deadline.title}}
-      </p-header>
-      <div>
-        <div>
-          {{deadline.deadline | date}}
-        </div>
-        <div class="small-font">
-          {{deadline.uuid}}
-        </div>
-      </div>
-      <p-footer>
-        <a class="hyperlink"
-           routerLink="/delete/{{deadline.uuid}}">Delete</a>
-      </p-footer>
-    </p-panel>
-    <div class="space"></div>
-  </div>
-</div>
-<!---->
-
 <div *ngIf="deadlinesCall.active"
      class="pi pi-spin pi-spinner" style="font-size: 3em">
 </div>
