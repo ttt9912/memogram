@@ -6,7 +6,7 @@ import ch.ttt.memogram.service.deadline.DeadlineDTO;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DTOToDeadline implements Converter<DeadlineDTO, Deadline> {
+public class DTOToDeadlineConverter implements Converter<DeadlineDTO, Deadline> {
 
     @Override
     public Deadline convert(final DeadlineDTO element) {

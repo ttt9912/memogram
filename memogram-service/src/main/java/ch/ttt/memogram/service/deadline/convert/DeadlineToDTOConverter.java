@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.UUID;
 
 @Component
-public class DeadlineToDTO implements Converter<Deadline, DeadlineDTO> {
+public class DeadlineToDTOConverter implements Converter<Deadline, DeadlineDTO> {
 
     @Override
     public DeadlineDTO convert(final Deadline deadline) {

@@ -12,7 +12,7 @@ export class ServiceCall<T> {
     this.start();
 
     this.observable = call.pipe(
-      delay(3000),
+      delay(1000),
       tap(
         next => {
           this.success();

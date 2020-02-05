@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 import {DeadlineListComponent} from './ui/deadline/deadline-list/deadline-list.component';
 import {HttpClientModule} from '@angular/common/http';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {ProgressSpinnerModule} from 'primeng';
+import {PanelModule} from 'primeng';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import {ProgressSpinnerModule} from 'primeng';
     AppRoutingModule,
     HttpClientModule,
     NoopAnimationsModule,
-    ProgressSpinnerModule,
+    PanelModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

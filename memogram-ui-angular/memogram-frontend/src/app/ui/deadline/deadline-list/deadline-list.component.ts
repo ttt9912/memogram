@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DeadlineService} from '../../../business/deadline/deadline.service';
-import {Deadline} from '../../../business/deadline/deadline';
 import {ServiceCall} from '../../../data/service-call';
+import {DeadlineDTO} from '../../../generated/memogram-services';
 
 @Component({
   selector: 'app-deadline-list',
@@ -9,8 +9,8 @@ import {ServiceCall} from '../../../data/service-call';
   styleUrls: ['./deadline-list.component.scss']
 })
 export class DeadlineListComponent implements OnInit {
-  private deadlines: Deadline[];
-  private deadlinesCall: ServiceCall<Deadline[]>;
+  private deadlines: DeadlineDTO[];
+  private deadlinesCall: ServiceCall<DeadlineDTO[]>;
 
   constructor(private deadlineService: DeadlineService) {
   }
@@ -22,4 +22,8 @@ export class DeadlineListComponent implements OnInit {
     )
   }
 
+
+  showDetail(uuid: string) {
+    console.log(`detail of uuid=${uuid}`);
+  }
 }

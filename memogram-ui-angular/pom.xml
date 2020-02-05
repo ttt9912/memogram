@@ -11,7 +11,15 @@
 
     <artifactId>memogram-ui-angular</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>ch.ttt</groupId>
+            <artifactId>memogram-service</artifactId>
+        </dependency>
+    </dependencies>
+
     <build>
+
         <plugins>
             <!-- build dist -->
             <plugin>
@@ -79,8 +87,6 @@
                 </executions>
             </plugin>
 
-
-            <!-- typescript generator
             <plugin>
                 <groupId>cz.habarta.typescript-generator</groupId>
                 <artifactId>typescript-generator-maven-plugin</artifactId>
@@ -93,15 +99,16 @@
                         <configuration>
                             <jsonLibrary>jackson2</jsonLibrary>
                             <classPatterns>
-                                <pattern>edurion.service.**Dto</pattern>
+                                <pattern>ch.ttt.memogram.service.**DTO</pattern>
                             </classPatterns>
-                            <outputFile>${project.build.outputDirectory}/edutask-services.d.ts</outputFile>
+                            <!-- TODO: how to? -->
+                            <outputFile>${project.basedir}/memogram-frontend/src/app/generated/memogram-services.d.ts
+                            </outputFile>
                             <outputKind>module</outputKind>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-            -->
         </plugins>
     </build>
 
