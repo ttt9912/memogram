@@ -19,11 +19,15 @@ export class DeadlineListComponent implements OnInit {
     this.deadlinesCall = this.deadlineService.getDeadlines();
     this.deadlinesCall.observable.subscribe(
       res => this.deadlines = res
-    )
+    );
   }
 
 
-  showDetail(uuid: string) {
+  showDetail(uuid: string): void {
     console.log(`detail of uuid=${uuid}`);
+  }
+
+  delete(uuid: string): void {
+
   }
 }

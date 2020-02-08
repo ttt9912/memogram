@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ServiceCall} from './service-call';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -16,4 +16,15 @@ export class RestClientService {
     return serviceCall;
   }
 
+  // TODO: service call
+  delete(url: string, id: string): ServiceCall<any> {
+    const serviceCall = new ServiceCall<any>(); // TODO: generic
+    serviceCall.execute(this.http.delete(`${url}/${id}`, httpOptions));
+    serviceCall.observable.subscribe();
+    return serviceCall;
+  }
 }
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};

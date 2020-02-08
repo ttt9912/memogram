@@ -1,11 +1,9 @@
 package ch.ttt.memogram;
 
 import ch.ttt.memogram.business.abstractions.DomainRepository;
-import ch.ttt.memogram.business.appointment.AppointmentService;
-import ch.ttt.memogram.business.deadline.DeadlineService;
-import ch.ttt.memogram.business.motive.MotiveService;
-import ch.ttt.memogram.domain.deadline.Deadline;
-import ch.ttt.memogram.domain.motive.Motive;
+import ch.ttt.memogram.business.task.TaskService;
+import ch.ttt.memogram.domain.task.Task;
+import ch.ttt.memogram.domain.task.TaskKey;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,17 +11,7 @@ import org.springframework.context.annotation.Configuration;
 public class BusinessConfig {
 
     @Bean
-    public MotiveService motiveService(final DomainRepository<Motive> motiveRepository) {
-        return new MotiveService(motiveRepository);
-    }
-
-    @Bean
-    public DeadlineService deadlineService(final DomainRepository<Deadline> deadlineRepository) {
-        return new DeadlineService(deadlineRepository);
-    }
-
-    @Bean
-    public AppointmentService appointmentService() {
-        return new AppointmentService(null);
+    public TaskService taskService(final DomainRepository<Task, TaskKey> taskRepository) {
+        return new TaskService(taskRepository);
     }
 }

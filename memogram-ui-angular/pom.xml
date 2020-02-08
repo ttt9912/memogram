@@ -21,6 +21,42 @@
     <build>
 
         <plugins>
+            <!-- delete generated classes -->
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${project.basedir}/memogram-frontend/src/app/generated</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+
+            <!-- generate typescript -->
+            <plugin>
+                <groupId>cz.habarta.typescript-generator</groupId>
+                <artifactId>typescript-generator-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate</id>
+                        <phase>validate</phase> <!-- TODO: right phase? -->
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <jsonLibrary>jackson2</jsonLibrary>
+                            <classPatterns>
+                                <pattern>ch.ttt.memogram.service.**DTO</pattern>
+                            </classPatterns>
+                            <outputFile>${project.basedir}/memogram-frontend/src/app/generated/memogram-services.d.ts
+                            </outputFile>
+                            <outputKind>module</outputKind>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <!-- build dist -->
             <plugin>
                 <groupId>com.github.eirslett</groupId>
@@ -71,7 +107,7 @@
                 <executions>
                     <execution>
                         <id>copy-resources</id>
-                        <phase>validate</phase>
+                        <phase>install</phase> <!-- TODO: better than validate? -->
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
@@ -86,30 +122,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <plugin>
-                <groupId>cz.habarta.typescript-generator</groupId>
-                <artifactId>typescript-generator-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>generate</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <jsonLibrary>jackson2</jsonLibrary>
-                            <classPatterns>
-                                <pattern>ch.ttt.memogram.service.**DTO</pattern>
-                            </classPatterns>
-                            <!-- TODO: how to? -->
-                            <outputFile>${project.basedir}/memogram-frontend/src/app/generated/memogram-services.d.ts
-                            </outputFile>
-                            <outputKind>module</outputKind>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
-
 </project>

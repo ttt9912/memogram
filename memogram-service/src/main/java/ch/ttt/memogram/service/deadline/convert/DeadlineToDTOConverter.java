@@ -1,20 +1,17 @@
 package ch.ttt.memogram.service.deadline.convert;
 
-import ch.ttt.memogram.domain.deadline.Deadline;
+import ch.ttt.memogram.domain.task.Task;
 import ch.ttt.memogram.service.abstractions.Converter;
-import ch.ttt.memogram.service.deadline.DeadlineDTO;
+import ch.ttt.memogram.service.deadline.TaskDTO;
 import org.springframework.stereotype.Component;
 
-import java.util.UUID;
-
 @Component
-public class DeadlineToDTOConverter implements Converter<Deadline, DeadlineDTO> {
+public class DeadlineToDTOConverter implements Converter<Task, TaskDTO> {
 
     @Override
-    public DeadlineDTO convert(final Deadline deadline) {
-        return new DeadlineDTO(
-                UUID.randomUUID().toString(),
-                deadline.getTitle(),
-                deadline.getDeadline());
+    public TaskDTO convert(final Task task) {
+        return new TaskDTO(
+                task.getTitle(),
+                task.getDeadline());
     }
 }

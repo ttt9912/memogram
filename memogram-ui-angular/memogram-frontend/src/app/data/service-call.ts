@@ -14,9 +14,9 @@ export class ServiceCall<T> {
     this.observable = call.pipe(
       delay(1000),
       tap(
-        next => {
-          this.success();
-        },
+          _ => {
+            this.success();
+          },
         error => {
           this.fail();
           this.error = error;

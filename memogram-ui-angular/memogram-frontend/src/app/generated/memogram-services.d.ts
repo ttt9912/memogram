@@ -1,16 +1,15 @@
 /* tslint:disable */
 /* eslint-disable */
-
-// Generated using typescript-generator version 2.19.577 on 2020-02-05 23:08:02.
+// Generated using typescript-generator version 2.19.577 on 2020-02-06 23:49:50.
 
 export interface DeadlineDTO {
-  uuid: string;
+  id: string;
   title: string;
   deadline: Date;
 }
 
 export interface MotiveDTO {
-  uuid: string;
+  id: string;
   title: string;
   completed: boolean;
   tags: Tag[];

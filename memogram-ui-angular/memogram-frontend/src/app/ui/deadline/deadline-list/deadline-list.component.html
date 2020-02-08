@@ -1,7 +1,8 @@
 <div *ngIf=deadlinesCall.succesful>
   <div *ngFor="let deadline of deadlines">
+    <div class="space"></div>
     <p-panel>
-      <p-header (click)="showDetail(deadline.uuid)" class="panel">
+      <p-header (click)="showDetail(deadline.id)" class="panel">
         {{deadline.title}}
       </p-header>
       <div>
@@ -9,15 +10,13 @@
           {{deadline.deadline | date}}
         </div>
         <div class="small-font">
-          {{deadline.uuid}}
+          id: {{deadline.id}}
         </div>
       </div>
       <p-footer>
-        <a class="hyperlink"
-           routerLink="/delete/{{deadline.uuid}}">Delete</a>
+        <button (click)="delete(deadline.id)" class="btn btn-link" type="button">Delete</button>
       </p-footer>
     </p-panel>
-    <div class="space"></div>
   </div>
 </div>
 
