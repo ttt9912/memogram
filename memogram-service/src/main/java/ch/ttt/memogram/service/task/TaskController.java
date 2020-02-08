@@ -1,4 +1,4 @@
-package ch.ttt.memogram.service.deadline;
+package ch.ttt.memogram.service.task;
 
 import ch.ttt.memogram.business.task.CreateTaskCommand;
 import ch.ttt.memogram.business.task.TaskService;
@@ -13,18 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/deadlines")
-public class DeadlineController extends DomainController<Task, TaskKey, TaskDTO> {
+public class TaskController extends DomainController<Task, TaskKey, TaskDTO> {
     private final TaskService service;
 
-    public DeadlineController(final TaskService service,
-                              final Converter<TaskDTO, Task> entityConverter,
-                              final Converter<Task, TaskDTO> dtoConverter) {
+    public TaskController(final TaskService service,
+                          final Converter<TaskDTO, Task> entityConverter,
+                          final Converter<Task, TaskDTO> dtoConverter) {
         super(service, entityConverter, dtoConverter);
         this.service = service;
     }
 
-    @PostMapping
-    public void create(@RequestBody final TaskDTO dto) {
-        service.create(new CreateTaskCommand(dto.getTitle(), dto.getDeadline()));
+    @PostMapping // TODO: used?
+    public void create(@RequestBody final CreateTaskCommand command) {
+        service.create(command);
     }
 }

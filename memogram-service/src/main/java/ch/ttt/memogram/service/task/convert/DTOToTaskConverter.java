@@ -1,9 +1,9 @@
-package ch.ttt.memogram.service.deadline.convert;
+package ch.ttt.memogram.service.task.convert;
 
 import ch.ttt.memogram.domain.task.Task;
 import ch.ttt.memogram.domain.task.TaskKey;
 import ch.ttt.memogram.service.abstractions.Converter;
-import ch.ttt.memogram.service.deadline.TaskDTO;
+import ch.ttt.memogram.service.task.TaskDTO;
 import org.springframework.stereotype.Component;
 
 @Component

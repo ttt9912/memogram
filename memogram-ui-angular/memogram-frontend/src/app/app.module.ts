@@ -3,17 +3,15 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {DeadlineListComponent} from './ui/deadline/deadline-list/deadline-list.component';
+import {TaskListComponent} from './ui/task/task-list/task-list.component';
 import {HttpClientModule} from '@angular/common/http';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {ButtonModule, PanelModule} from 'primeng';
-import {MotiveListComponent} from './ui/motive/motive-list/motive-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DeadlineListComponent,
-    MotiveListComponent,
+    TaskListComponent,
   ],
   imports: [
     BrowserModule,

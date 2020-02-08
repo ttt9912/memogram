@@ -1,13 +1,12 @@
-package ch.ttt.memogram.service.deadline;
+package ch.ttt.memogram.service.task;
 
-import ch.ttt.memogram.service.util.IDGenerator;
 import lombok.Value;
 
 import java.time.LocalDateTime;
 
 @Value
 public class TaskDTO {
-    private final String id = IDGenerator.random();
+    private final String id;
     private final String title;
     private final LocalDateTime deadline;
 }
