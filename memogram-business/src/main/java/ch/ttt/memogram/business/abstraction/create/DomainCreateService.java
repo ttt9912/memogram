@@ -1,9 +1,10 @@
 package ch.ttt.memogram.business.abstraction.create;
 
-import ch.ttt.memogram.business.abstraction.Converter;
 import ch.ttt.memogram.business.abstraction.DomainRepository;
+import ch.ttt.memogram.domain.abstraction.DomainEntity;
+import ch.ttt.memogram.shared.converter.Converter;
 
-public abstract class DomainCreateService<KEY, ENTITY, CREATE_COMMAND> {
+public abstract class DomainCreateService<KEY, ENTITY extends DomainEntity<KEY>, CREATE_COMMAND> {
     private final DomainRepository<KEY, ENTITY> repository;
     private final Converter<CREATE_COMMAND, ENTITY> entityConverter;
 
@@ -13,8 +14,7 @@ public abstract class DomainCreateService<KEY, ENTITY, CREATE_COMMAND> {
         this.entityConverter = entityConverter;
     }
 
-    public void create(final KEY key, final CREATE_COMMAND command) { // TODO: this is a usecase for DomainUpdateCommand abstract class (getKey())
-        final ENTITY entity = entityConverter.convert(command);
-        repository.save(key, entity);
+    public void create(final CREATE_COMMAND command) {
+        repository.save(entityConverter.convert(command));
     }
 }

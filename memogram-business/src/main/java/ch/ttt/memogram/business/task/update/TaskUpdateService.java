@@ -7,7 +7,9 @@ import ch.ttt.memogram.domain.task.TaskKey;
 
 public class TaskUpdateService extends DomainUpdateService<TaskKey, Task, TaskUpdateCommand> {
 
-    public TaskUpdateService(final DomainRepository<TaskKey, Task> repository) {
-        super(repository, new TaskConverter());
+    public TaskUpdateService(final DomainRepository<TaskKey, Task> repository,
+                             final TaskUpdateCommandToTaskConverter converter,
+                             final TaskUpdateCommandToTaskKeyConverter keyConverter) {
+        super(repository, converter, keyConverter);
     }
 }

@@ -7,7 +7,8 @@ import ch.ttt.memogram.domain.task.TaskKey;
 
 public class TaskCreateService extends DomainCreateService<TaskKey, Task, TaskCreateCommand> {
 
-    public TaskCreateService(final DomainRepository<TaskKey, Task> repository) {
-        super(repository, new TaskConverter());
+    public TaskCreateService(final DomainRepository<TaskKey, Task> repository,
+                             final TaskCreateCommandToTaskConverter converter) {
+        super(repository, converter);
     }
 }

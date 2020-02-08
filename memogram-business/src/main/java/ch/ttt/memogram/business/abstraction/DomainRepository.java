@@ -1,12 +1,14 @@
 package ch.ttt.memogram.business.abstraction;
 
+import ch.ttt.memogram.domain.abstraction.DomainEntity;
+
 import java.util.Collection;
 import java.util.Optional;
 
-public interface DomainRepository<KEY, ENTITY> {
+public interface DomainRepository<KEY, ENTITY extends DomainEntity<KEY>> {
     Collection<ENTITY> findAll();
 
-    void save(KEY key, ENTITY entity); // TODO: usecase for abstract DomainEntity..
+    void save(ENTITY entity);
 
     Optional<ENTITY> findByKey(KEY key);
 

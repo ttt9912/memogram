@@ -1,11 +1,12 @@
 package ch.ttt.memogram.jsonstore.abstraction;
 
 import ch.ttt.memogram.business.abstraction.DomainRepository;
+import ch.ttt.memogram.domain.abstraction.DomainEntity;
 
 import java.util.Collection;
 import java.util.Optional;
 
-public abstract class DomainRepositoryImpl<KEY, ENTITY, JSON_DTO> implements DomainRepository<KEY, ENTITY> {
+public abstract class DomainRepositoryImpl<KEY, ENTITY extends DomainEntity<KEY>, JSON_DTO> implements DomainRepository<KEY, ENTITY> {
     private final JsonFileStore<KEY, ENTITY, JSON_DTO> store;
 
     protected DomainRepositoryImpl(final JsonFileStore<KEY, ENTITY, JSON_DTO> store) {
@@ -18,8 +19,8 @@ public abstract class DomainRepositoryImpl<KEY, ENTITY, JSON_DTO> implements Dom
     }
 
     @Override
-    public void save(final KEY key, final ENTITY entity) { // TODO: usecase for abstract DomainEntity..
-        store.save(key, entity);
+    public void save(final ENTITY entity) { // TODO: usecase for abstract DomainEntity..
+        store.save(entity);
     }
 
     @Override

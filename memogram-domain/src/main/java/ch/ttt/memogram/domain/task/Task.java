@@ -1,5 +1,6 @@
 package ch.ttt.memogram.domain.task;
 
+import ch.ttt.memogram.domain.abstraction.DomainEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,9 +9,9 @@ import lombok.EqualsAndHashCode;
 import java.time.LocalDateTime;
 
 @Data
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @EqualsAndHashCode(of = "key")
-public class Task {
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+public class Task implements DomainEntity<TaskKey> {
     private final TaskKey key;
     private String title;
     private LocalDateTime deadline;

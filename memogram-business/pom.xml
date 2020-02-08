@@ -16,6 +16,10 @@
             <groupId>ch.ttt</groupId>
             <artifactId>memogram-domain</artifactId>
         </dependency>
+        <dependency>
+            <groupId>ch.ttt</groupId>
+            <artifactId>memogram-shared</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

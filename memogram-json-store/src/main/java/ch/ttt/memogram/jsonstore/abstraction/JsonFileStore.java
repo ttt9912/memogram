@@ -1,7 +1,9 @@
 package ch.ttt.memogram.jsonstore.abstraction;
 
+import ch.ttt.memogram.domain.abstraction.DomainEntity;
 import ch.ttt.memogram.jsonstore.common.JsonExportService;
 import ch.ttt.memogram.jsonstore.common.JsonImportService;
+import ch.ttt.memogram.shared.converter.Converter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,7 @@ import java.util.*;
 
 @Slf4j
 @RequiredArgsConstructor
-public abstract class JsonFileStore<KEY, ENTITY, JSON_ELEMENT> {
+public abstract class JsonFileStore<KEY, ENTITY extends DomainEntity<KEY>, JSON_ELEMENT> {
     private final Map<KEY, ENTITY> store = new HashMap<>();
 
     @Autowired
@@ -43,8 +45,8 @@ public abstract class JsonFileStore<KEY, ENTITY, JSON_ELEMENT> {
         return Optional.ofNullable(store.get(key));
     }
 
-    public synchronized void save(final KEY key, final ENTITY entity) { // TODO: this is a usecase for DomainEntity abstract class (getKey())
-        store.put(key, entity);
+    public synchronized void save(final ENTITY entity) { // TODO: this is a usecase for DomainEntity abstract class (getKey())
+        store.put(entity.getKey(), entity);
         persist(jsonConverter.convertAll(store.values()));
     }
 

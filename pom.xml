@@ -10,6 +10,7 @@
         <module>memogram-service</module>
         <module>memogram-json-store</module>
         <module>memogram-ui-angular</module>
+        <module>memogram-shared</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -36,6 +37,11 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>ch.ttt</groupId>
+                <artifactId>memogram-shared</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
             <dependency>
                 <groupId>ch.ttt</groupId>
                 <artifactId>memogram-domain</artifactId>

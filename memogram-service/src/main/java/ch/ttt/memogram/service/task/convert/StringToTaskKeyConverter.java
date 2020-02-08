@@ -1,11 +1,11 @@
 package ch.ttt.memogram.service.task.convert;
 
 import ch.ttt.memogram.domain.task.TaskKey;
-import ch.ttt.memogram.service.abstraction.Converter;
+import ch.ttt.memogram.shared.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TaskKeyConverter implements Converter<String, TaskKey> {
+public class StringToTaskKeyConverter implements Converter<String, TaskKey> {
 
     @Override
     public TaskKey convert(final String id) {

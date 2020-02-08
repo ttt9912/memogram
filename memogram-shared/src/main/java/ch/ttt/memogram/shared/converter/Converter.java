@@ -1,4 +1,4 @@
-package ch.ttt.memogram.service.abstraction;
+package ch.ttt.memogram.shared.converter;
 
 import java.util.Collection;
 import java.util.List;
