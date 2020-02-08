@@ -1,14 +1,14 @@
-package ch.ttt.memogram.jsonstore.abstractions;
+package ch.ttt.memogram.jsonstore.abstraction;
 
-import ch.ttt.memogram.business.abstractions.DomainRepository;
+import ch.ttt.memogram.business.abstraction.DomainRepository;
 
 import java.util.Collection;
 import java.util.Optional;
 
-public abstract class DomainRepositoryImpl<ENTITY, KEY, JSON_DTO> implements DomainRepository<ENTITY, KEY> {
-    private final JsonFileStore<ENTITY, KEY, JSON_DTO> store;
+public abstract class DomainRepositoryImpl<KEY, ENTITY, JSON_DTO> implements DomainRepository<KEY, ENTITY> {
+    private final JsonFileStore<KEY, ENTITY, JSON_DTO> store;
 
-    protected DomainRepositoryImpl(final JsonFileStore<ENTITY, KEY, JSON_DTO> store) {
+    protected DomainRepositoryImpl(final JsonFileStore<KEY, ENTITY, JSON_DTO> store) {
         this.store = store;
     }
 

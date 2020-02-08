@@ -1,4 +1,4 @@
-package ch.ttt.memogram.jsonstore.abstractions;
+package ch.ttt.memogram.jsonstore.abstraction;
 
 import ch.ttt.memogram.jsonstore.common.JsonExportService;
 import ch.ttt.memogram.jsonstore.common.JsonImportService;
@@ -11,7 +11,7 @@ import java.util.*;
 
 @Slf4j
 @RequiredArgsConstructor
-public abstract class JsonFileStore<ENTITY, KEY, JSON_ELEMENT> {
+public abstract class JsonFileStore<KEY, ENTITY, JSON_ELEMENT> {
     private final Map<KEY, ENTITY> store = new HashMap<>();
 
     @Autowired
