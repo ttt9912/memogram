@@ -2,6 +2,7 @@ package ch.ttt.memogram.jsonstore.abstractions;
 
 import ch.ttt.memogram.jsonstore.common.JsonExportService;
 import ch.ttt.memogram.jsonstore.common.JsonImportService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,6 +10,7 @@ import javax.annotation.PostConstruct;
 import java.util.*;
 
 @Slf4j
+@RequiredArgsConstructor
 public abstract class JsonFileStore<ENTITY, KEY, JSON_ELEMENT> {
     private final Map<KEY, ENTITY> store = new HashMap<>();
 
@@ -18,15 +20,9 @@ public abstract class JsonFileStore<ENTITY, KEY, JSON_ELEMENT> {
     @Autowired
     private JsonExportService jsonExportService;
 
-    @Autowired
-    private Converter<ENTITY, JSON_ELEMENT> jsonConverter;
-
-    @Autowired
-    private Converter<JSON_ELEMENT, ENTITY> entityConverter;
-
-    @Autowired
-    private Converter<JSON_ELEMENT, KEY> keyConverter;
-
+    private final Converter<ENTITY, JSON_ELEMENT> jsonConverter;
+    private final Converter<JSON_ELEMENT, ENTITY> entityConverter;
+    private final Converter<JSON_ELEMENT, KEY> keyConverter;
 
     @PostConstruct
     public void init() {
@@ -56,6 +52,10 @@ public abstract class JsonFileStore<ENTITY, KEY, JSON_ELEMENT> {
         jsonExportService.writeFile(getFilename(), elements);
     }
 
+    public void remove(final KEY key) {
+        store.remove(key);
+    }
+
     private List<JSON_ELEMENT> read() {
         return jsonImportService.readFile(getFilename(), getJsonElementClass());
     }
@@ -65,4 +65,5 @@ public abstract class JsonFileStore<ENTITY, KEY, JSON_ELEMENT> {
     }
 
     protected abstract Class<JSON_ELEMENT> getJsonElementClass();
+
 }

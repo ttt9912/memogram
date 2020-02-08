@@ -6,7 +6,7 @@ import ch.ttt.memogram.jsonstore.task.TaskJsonElement;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TaskToJsonElementConverter implements Converter<Task, TaskJsonElement> {
+public class TaskJsonElementConverter implements Converter<Task, TaskJsonElement> {
 
     @Override
     public TaskJsonElement convert(final Task element) {

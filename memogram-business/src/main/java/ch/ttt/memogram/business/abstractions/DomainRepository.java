@@ -6,7 +6,9 @@ import java.util.Optional;
 public interface DomainRepository<ENTITY, KEY> {
     Collection<ENTITY> findAll();
 
-    void save(ENTITY entity);
+    void save(KEY key, ENTITY entity); // TODO: usecase for abstract DomainEntity..
 
     Optional<ENTITY> findByKey(KEY key);
+
+    void remove(KEY key);
 }

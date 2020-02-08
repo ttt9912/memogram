@@ -19,7 +19,7 @@ public class MemogramJsonStoreApp {
     @Bean
     CommandLineRunner runner(final TaskService service) {
         return args -> {
-            service.create(new CreateTaskCommand("Learn Spring", LocalDateTime.now()));
+            service.createTask(new CreateTaskCommand("Learn Spring", LocalDateTime.now()));
             service.findAll().forEach(System.out::println);
         };
     }
