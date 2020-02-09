@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 2.19.577 on 2020-02-09 10:58:50.
+// Generated using typescript-generator version 2.19.577 on 2020-02-10 00:01:11.
 
 export interface DomainRequest<KEY, COMMAND> {
   key: KEY;

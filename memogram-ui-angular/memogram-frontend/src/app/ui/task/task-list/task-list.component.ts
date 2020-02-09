@@ -40,20 +40,32 @@ export class TaskListComponent implements OnInit {
       return 'no-deadline';
     }
 
-    if (this.getDaysUntil(task.deadline) < 0) {
+    if (this.isOverdue(task.deadline)) {
       return 'overdue';
     }
 
-    if (this.getDaysUntil(task.deadline) < 3) {
+    if (this.closerThan(task.deadline, 3)) {
       return 'hot';
     }
 
     return 'cold';
   }
 
-  private getDaysUntil(date: Date): number {
-    const today = new Date();
-    const diff = new Date(date).getTime() - today.getTime();
+  private isOverdue(deadline: Date) {
+    return this.getMillisUntilNow(deadline) <= 0;
+  }
+
+  private closerThan(deadline: Date, numDays: number) {
+    return this.getDaysUntilNow(deadline) < numDays;
+  }
+
+  private getDaysUntilNow(date: Date): number {
+    const diff = this.getMillisUntilNow(date);
     return Math.ceil(diff / (1000 * 3600 * 24));
+  }
+
+  private getMillisUntilNow(date: Date): number {
+    const today = new Date();
+    return new Date(date).getTime() - today.getTime();
   }
 }
