@@ -1,10 +1,23 @@
 <div *ngIf=tasksCall.succesful>
-  <div *ngFor="let task of tasks">
+  <div *ngFor="let task of orderedTasks.withDeadline">
     <div class="space-10"></div>
-    <div class="card">
+    <div [ngClass]="getSeverity(task)" class="card">
       <div class="card-body">
         <h5 (click)="showDetail(task.id)" class="hyperlink">{{task.title}}</h5>
         <h6 class="text-muted">Deadline: {{task.deadline | date}}</h6>
+        <span (click)="delete(task.id)" class="hyperlink blue" style="padding-right: 10px">Delete</span>
+        <span (click)="delete(task.id)" class="hyperlink blue">Delete</span>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div *ngFor="let task of orderedTasks.withoudDeadline">
+    <div class="space-10"></div>
+    <div class="card" style="background: lavender">
+      <div class="card-body">
+        <h5 (click)="showDetail(task.id)" class="hyperlink">{{task.title}}</h5>
         <span (click)="delete(task.id)" class="hyperlink blue" style="padding-right: 10px">Delete</span>
         <span (click)="delete(task.id)" class="hyperlink blue">Delete</span>
       </div>

@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {TaskService} from '../../../business/task/task.service';
 import {ServiceCallTracker} from '../../../data/service-call-tracker';
 import {TaskDTO} from '../../../generated/memogram-services';
+import {TaskService} from '../../../business/task/task.service';
+import {TaskDataService} from '../../../data/task/task-data.service';
+import {OrderedTasks} from '../../../business/task/ordered-tasks';
 
 @Component({
   selector: 'app-task-list',
@@ -9,10 +11,11 @@ import {TaskDTO} from '../../../generated/memogram-services';
   styleUrls: ['./task-list.component.scss']
 })
 export class TaskListComponent implements OnInit {
-  private tasks: TaskDTO[];
-  private tasksCall = new ServiceCallTracker<TaskDTO[]>();
+  private orderedTasks: OrderedTasks;
+  private tasksCall = new ServiceCallTracker<OrderedTasks>();
 
-  constructor(private taskService: TaskService) {
+  constructor(private taskService: TaskService,
+              private taskDataService: TaskDataService) {
   }
 
   ngOnInit() {
@@ -21,7 +24,7 @@ export class TaskListComponent implements OnInit {
 
   loadAll() {
     this.tasksCall.execute(this.taskService.getTasks())
-      .subscribe(tasks => this.tasks = tasks);
+      .subscribe(orderedTasks => this.orderedTasks = orderedTasks);
   }
 
   delete(uuid: string): void {
@@ -30,5 +33,27 @@ export class TaskListComponent implements OnInit {
 
   showDetail(uuid: string): void {
     console.log(`detail of uuid=${uuid}`);
+  }
+
+  getSeverity(task: TaskDTO) {
+    if (!task.deadline) {
+      return 'no-deadline';
+    }
+
+    if (this.getDaysUntil(task.deadline) < 0) {
+      return 'overdue';
+    }
+
+    if (this.getDaysUntil(task.deadline) < 3) {
+      return 'hot';
+    }
+
+    return 'cold';
+  }
+
+  private getDaysUntil(date: Date): number {
+    const today = new Date();
+    const diff = new Date(date).getTime() - today.getTime();
+    return Math.ceil(diff / (1000 * 3600 * 24));
   }
 }
