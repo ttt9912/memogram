@@ -1,22 +1,14 @@
 <div *ngIf=tasksCall.succesful>
   <div *ngFor="let task of tasks">
-    <div class="space"></div>
-    <p-panel>
-      <p-header (click)="showDetail(task.id)" class="panel">
-        {{task.title}}
-      </p-header>
-      <div>
-        <div>
-          {{task.deadline | date}}
-        </div>
-        <div class="small-font">
-          id: {{task.id}}
-        </div>
+    <div class="space-10"></div>
+    <div class="card">
+      <div class="card-body">
+        <h5 (click)="showDetail(task.id)" class="hyperlink">{{task.title}}</h5>
+        <h6 class="text-muted">Deadline: {{task.deadline | date}}</h6>
+        <span (click)="delete(task.id)" class="hyperlink blue" style="padding-right: 10px">Delete</span>
+        <span (click)="delete(task.id)" class="hyperlink blue">Delete</span>
       </div>
-      <p-footer>
-        <button (click)="delete(task.id)" class="btn btn-link" type="button">Delete</button>
-      </p-footer>
-    </p-panel>
+    </div>
   </div>
 </div>
 

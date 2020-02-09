@@ -1,6 +1,5 @@
 package ch.ttt.memogram;
 
-import ch.ttt.memogram.business.task.create.TaskCreateCommand;
 import ch.ttt.memogram.business.task.create.TaskCreateService;
 import ch.ttt.memogram.business.task.query.TaskQueryService;
 import org.springframework.boot.CommandLineRunner;
@@ -8,8 +7,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.time.LocalDateTime;
 
+/*
+ * TODO
+ *  - Motive Tags: https://getbootstrap.com/docs/4.4/components/badge/
+ *
+ */
 @SpringBootApplication
 public class MemogramJsonStoreApp {
 
@@ -20,7 +23,6 @@ public class MemogramJsonStoreApp {
     @Bean
     CommandLineRunner runner(final TaskQueryService service, final TaskCreateService createService) {
         return args -> {
-            createService.create(new TaskCreateCommand("Learn Spring", LocalDateTime.now()));
             service.findAll().forEach(System.out::println);
         };
     }

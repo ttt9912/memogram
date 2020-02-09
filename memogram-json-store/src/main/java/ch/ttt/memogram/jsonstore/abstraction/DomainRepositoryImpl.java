@@ -2,16 +2,15 @@ package ch.ttt.memogram.jsonstore.abstraction;
 
 import ch.ttt.memogram.business.abstraction.DomainRepository;
 import ch.ttt.memogram.domain.abstraction.DomainEntity;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
 
 import java.util.Collection;
 import java.util.Optional;
 
+@RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class DomainRepositoryImpl<KEY, ENTITY extends DomainEntity<KEY>, JSON_DTO> implements DomainRepository<KEY, ENTITY> {
     private final JsonFileStore<KEY, ENTITY, JSON_DTO> store;
-
-    protected DomainRepositoryImpl(final JsonFileStore<KEY, ENTITY, JSON_DTO> store) {
-        this.store = store;
-    }
 
     @Override
     public Collection<ENTITY> findAll() {
@@ -19,7 +18,7 @@ public abstract class DomainRepositoryImpl<KEY, ENTITY extends DomainEntity<KEY>
     }
 
     @Override
-    public void save(final ENTITY entity) { // TODO: usecase for abstract DomainEntity..
+    public void save(final ENTITY entity) {
         store.save(entity);
     }
 

@@ -4,6 +4,7 @@ import ch.ttt.memogram.domain.abstraction.DomainEntity;
 import ch.ttt.memogram.jsonstore.common.JsonExportService;
 import ch.ttt.memogram.jsonstore.common.JsonImportService;
 import ch.ttt.memogram.shared.converter.Converter;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import javax.annotation.PostConstruct;
 import java.util.*;
 
 @Slf4j
-@RequiredArgsConstructor
+@RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class JsonFileStore<KEY, ENTITY extends DomainEntity<KEY>, JSON_ELEMENT> {
     private final Map<KEY, ENTITY> store = new HashMap<>();
 
@@ -45,7 +46,7 @@ public abstract class JsonFileStore<KEY, ENTITY extends DomainEntity<KEY>, JSON_
         return Optional.ofNullable(store.get(key));
     }
 
-    public synchronized void save(final ENTITY entity) { // TODO: this is a usecase for DomainEntity abstract class (getKey())
+    public synchronized void save(final ENTITY entity) {
         store.put(entity.getKey(), entity);
         persist(jsonConverter.convertAll(store.values()));
     }

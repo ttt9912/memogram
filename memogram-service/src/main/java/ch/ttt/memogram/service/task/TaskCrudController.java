@@ -8,22 +8,22 @@ import ch.ttt.memogram.business.task.update.TaskUpdateCommand;
 import ch.ttt.memogram.business.task.update.TaskUpdateService;
 import ch.ttt.memogram.domain.task.Task;
 import ch.ttt.memogram.domain.task.TaskKey;
-import ch.ttt.memogram.service.abstraction.DomainController;
+import ch.ttt.memogram.service.abstraction.DomainCrudController;
 import ch.ttt.memogram.service.task.convert.StringToTaskKeyConverter;
 import ch.ttt.memogram.service.task.convert.TaskToTaskDTOConverter;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/deadlines")
-public class TaskController extends DomainController<TaskKey, Task, TaskCreateCommand, TaskUpdateCommand, TaskDTO> {
+@RequestMapping("api/tasks")
+public class TaskCrudController extends DomainCrudController<TaskKey, Task, TaskCreateCommand, TaskUpdateCommand, TaskDTO> {
 
-    public TaskController(final TaskQueryService queryService,
-                          final TaskCreateService createService,
-                          final TaskUpdateService updateService,
-                          final TaskDeleteService deleteService,
-                          final TaskToTaskDTOConverter dtoConverter,
-                          final StringToTaskKeyConverter keyConverter) {
+    public TaskCrudController(final TaskQueryService queryService,
+                              final TaskCreateService createService,
+                              final TaskUpdateService updateService,
+                              final TaskDeleteService deleteService,
+                              final TaskToTaskDTOConverter dtoConverter,
+                              final StringToTaskKeyConverter keyConverter) {
         super(queryService, createService, updateService, deleteService, dtoConverter, keyConverter);
     }
 }

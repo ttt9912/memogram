@@ -6,13 +6,14 @@ import ch.ttt.memogram.business.abstraction.query.DomainQueryService;
 import ch.ttt.memogram.business.abstraction.update.DomainUpdateService;
 import ch.ttt.memogram.domain.abstraction.DomainEntity;
 import ch.ttt.memogram.shared.converter.Converter;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequiredArgsConstructor
-public abstract class DomainController<KEY, ENTITY extends DomainEntity<KEY>, CREATE_COMMAND, UPDATE_COMMAND, DTO> {
+@RequiredArgsConstructor(access = AccessLevel.PROTECTED)
+public abstract class DomainCrudController<KEY, ENTITY extends DomainEntity<KEY>, CREATE_COMMAND, UPDATE_COMMAND, DTO> {
     private final DomainQueryService<KEY, ENTITY> queryService;
     private final DomainCreateService<KEY, ENTITY, CREATE_COMMAND> createService;
     private final DomainUpdateService<KEY, ENTITY, UPDATE_COMMAND> updateService;

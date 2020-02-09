@@ -1,18 +1,12 @@
 <head>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 </head>
-<header>
-  <h1>
-    {{title}}
-  </h1>
-  <nav>
-    <ul class="nav-bar">
-      <li class="nav-element">
-        <a routerLink="/tasks"><i class="pi pi-bars"></i></a>
-      </li>
-    </ul>
-  </nav>
-</header>
+
+<h1>{{title}}</h1>
+
+<nav class="navigation navbar sticky-top">
+  <a routerLink="/tasks"><i class="pi pi-bars" style="font-size: 2em"></i></a>
+</nav>
 
 <div class="container">
   <router-outlet></router-outlet>

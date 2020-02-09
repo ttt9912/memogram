@@ -2,21 +2,18 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {delay, tap} from 'rxjs/operators';
 
-export class ServiceCall<T> {
-  active: boolean = false;
-  succesful: boolean = false;
+export class ServiceCallTracker<T> {
+  active = false;
+  succesful = false;
   error: HttpErrorResponse;
-  observable: Observable<T>;
 
-  execute(call: Observable<T>): void {
+  execute(call: Observable<T>): Observable<T> {
     this.start();
 
-    this.observable = call.pipe(
+    return call.pipe(
       delay(1000),
       tap(
-          _ => {
-            this.success();
-          },
+        _ => this.success(),
         error => {
           this.fail();
           this.error = error;

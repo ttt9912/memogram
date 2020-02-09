@@ -8,3 +8,19 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.space-10 {
+  height: 10px;
+}
+
+.hyperlink {
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.hyperlink.blue {
+  color: #0080ff;
+}

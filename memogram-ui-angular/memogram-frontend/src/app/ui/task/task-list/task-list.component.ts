@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TaskService} from '../../../business/task/task.service';
-import {ServiceCall} from '../../../data/service-call';
+import {ServiceCallTracker} from '../../../data/service-call-tracker';
 import {TaskDTO} from '../../../generated/memogram-services';
 
 @Component({
@@ -10,24 +10,25 @@ import {TaskDTO} from '../../../generated/memogram-services';
 })
 export class TaskListComponent implements OnInit {
   private tasks: TaskDTO[];
-  private tasksCall: ServiceCall<TaskDTO[]>;
+  private tasksCall = new ServiceCallTracker<TaskDTO[]>();
 
   constructor(private taskService: TaskService) {
   }
 
   ngOnInit() {
-    this.tasksCall = this.taskService.getDeadlines();
-    this.tasksCall.observable.subscribe(
-      res => this.tasks = res
-    );
+    this.loadAll();
   }
 
-
-  showDetail(uuid: string): void {
-    console.log(`detail of uuid=${uuid}`);
+  loadAll() {
+    this.tasksCall.execute(this.taskService.getTasks())
+      .subscribe(tasks => this.tasks = tasks);
   }
 
   delete(uuid: string): void {
+    console.log(`delete with id=${uuid}`);
+  }
 
+  showDetail(uuid: string): void {
+    console.log(`detail of uuid=${uuid}`);
   }
 }

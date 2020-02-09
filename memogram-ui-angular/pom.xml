@@ -108,7 +108,7 @@
                 <executions>
                     <execution>
                         <id>copy-resources</id>
-                        <phase>install</phase> <!-- TODO: better than validate? -->
+                        <phase>validate</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
