@@ -13,3 +13,12 @@ Grid CSS is a lightweight responsive layout utility optimized for mobile devices
 https://www.primefaces.org/showcase/ui/panel/grid.xhtml
 
 https://primefaces.github.io/primefaces/8_0/#/components/gridcss
+
+
+# Heroku
+
+## GitHub Deployment
+
+### Enable Java 11 on Heroku
+create file `system.properties` with
+environment variable `java.runtime.version=11`
