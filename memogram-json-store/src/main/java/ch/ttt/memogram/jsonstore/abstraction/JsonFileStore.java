@@ -1,8 +1,8 @@
 package ch.ttt.memogram.jsonstore.abstraction;
 
 import ch.ttt.memogram.domain.abstraction.DomainEntity;
-import ch.ttt.memogram.jsonstore.common.JsonExportService;
-import ch.ttt.memogram.jsonstore.common.JsonImportService;
+import ch.ttt.memogram.jsonstore.common.jsonio.JsonExportService;
+import ch.ttt.memogram.jsonstore.common.jsonio.JsonImportService;
 import ch.ttt.memogram.shared.converter.Converter;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +35,11 @@ public abstract class JsonFileStore<KEY, ENTITY extends DomainEntity<KEY>, JSON_
                         "\n---------------------------------------"
                 , this.getClass().getSimpleName(), getFilename());
         log.info("init Store {}", this.getClass().getSimpleName());
-        read().forEach(jsonElement -> store.put(keyConverter.convert(jsonElement), entityConverter.convert(jsonElement)));
+
+        read().forEach(jsonElement -> store.put(
+                keyConverter.convert(jsonElement),
+                entityConverter.convert(jsonElement))
+        );
     }
 
     public Collection<ENTITY> values() {
@@ -52,6 +56,10 @@ public abstract class JsonFileStore<KEY, ENTITY extends DomainEntity<KEY>, JSON_
     }
 
     private void persist(final List<JSON_ELEMENT> elements) {
+        log.info("\n---------------------------------------" +
+                        "\n writing file '{}'" +
+                        "\n---------------------------------------"
+                , getFilename());
         jsonExportService.writeFile(getFilename(), elements);
     }
 

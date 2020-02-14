@@ -1,0 +1,15 @@
+<div class="form-container">
+  <form (submit)="submit()" [formGroup]="inputForm">
+    <div class="form-controls">
+      <input class="input-field" formControlName="input">
+      <button [disabled]="inputForm.invalid" class="submit-button">
+        <i class="pi pi-chevron-circle-right"></i>
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="ui-inputgroup">
+  <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+  <input pInputText placeholder="Username" type="text">
+</div>

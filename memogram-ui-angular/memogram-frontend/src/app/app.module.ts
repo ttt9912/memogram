@@ -5,22 +5,27 @@ import {AppComponent} from './app.component';
 import {TaskListComponent} from './ui/task/task-list/task-list.component';
 import {HttpClientModule} from '@angular/common/http';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {ButtonModule, PanelModule, PickListModule} from 'primeng';
+import {ButtonModule, InputTextModule, PanelModule, PickListModule} from 'primeng';
+import {InputComponent} from './ui/shared/input/input.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TaskListComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    NoopAnimationsModule,
-    PanelModule,
-    ButtonModule,
-    PickListModule,
-  ],
+    declarations: [
+        AppComponent,
+        TaskListComponent,
+        InputComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        NoopAnimationsModule,
+        PanelModule,
+        ButtonModule,
+        PickListModule,
+        InputTextModule,
+        ReactiveFormsModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

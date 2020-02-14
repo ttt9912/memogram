@@ -1,11 +1,18 @@
 package ch.ttt.memogram;
 
-import ch.ttt.memogram.business.task.create.TaskCreateService;
+import ch.ttt.memogram.business.blocker.command.BlockerCommandService;
+import ch.ttt.memogram.business.blocker.command.BlockerCreateCommand;
+import ch.ttt.memogram.business.blocker.query.BlockerQueryService;
+import ch.ttt.memogram.business.task.command.TaskCommandService;
 import ch.ttt.memogram.business.task.query.TaskQueryService;
+import ch.ttt.memogram.domain.shared.Timebox;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 
 /*
@@ -21,10 +28,15 @@ public class MemogramJsonStoreApp {
     }
 
     @Bean
-    CommandLineRunner runner(final TaskQueryService service, final TaskCreateService createService) {
+    CommandLineRunner runner(final TaskQueryService service, final TaskCommandService commandService,
+                             final BlockerQueryService blockerQueryService, final BlockerCommandService blockerCommandService) {
         return args -> {
-            // createService.create(new TaskCreateCommand("Buy Clothes", null));
-            service.findAll().forEach(System.out::println);
+            // commandService.create(new TaskCreateCommand("Buy Clothes", null));
+            blockerCommandService.create(new BlockerCreateCommand("Wohnungsbesichtigung",
+                    List.of(new Timebox(LocalDateTime.now(), LocalDateTime.now()))));
+
+            blockerQueryService.findAll()
+                    .forEach(System.out::println);
         };
     }
 }

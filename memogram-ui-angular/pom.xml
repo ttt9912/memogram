@@ -48,7 +48,7 @@
                             <jsonLibrary>jackson2</jsonLibrary>
                             <classPatterns>
                                 <pattern>ch.ttt.memogram.service.**DTO</pattern>
-                                <pattern>ch.ttt.memogram.service.**Request</pattern>
+                                <pattern>ch.ttt.memogram.business.**Command</pattern>
                             </classPatterns>
                             <outputFile>${project.basedir}/memogram-frontend/src/app/generated/memogram-services.d.ts
                             </outputFile>

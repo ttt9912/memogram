@@ -1,32 +1,33 @@
 package ch.ttt.memogram;
 
 import ch.ttt.memogram.business.abstraction.DomainRepository;
-import ch.ttt.memogram.business.task.create.TaskCreateCommandToTaskConverter;
-import ch.ttt.memogram.business.task.create.TaskCreateService;
-import ch.ttt.memogram.business.task.delete.TaskDeleteService;
+import ch.ttt.memogram.business.blocker.command.BlockerCommandService;
+import ch.ttt.memogram.business.blocker.command.converter.BlockerCreateCommandToBlockerConverter;
+import ch.ttt.memogram.business.blocker.command.converter.BlockerUpdateCommandToBlockerConverter;
+import ch.ttt.memogram.business.blocker.query.BlockerQueryService;
+import ch.ttt.memogram.business.task.command.TaskCommandService;
+import ch.ttt.memogram.business.task.command.converter.TaskCreateCommandToTaskConverter;
+import ch.ttt.memogram.business.task.command.converter.TaskUpdateCommandToTaskConverter;
 import ch.ttt.memogram.business.task.query.TaskQueryService;
-import ch.ttt.memogram.business.task.update.TaskUpdateCommandToTaskConverter;
-import ch.ttt.memogram.business.task.update.TaskUpdateCommandToTaskKeyConverter;
-import ch.ttt.memogram.business.task.update.TaskUpdateService;
+import ch.ttt.memogram.domain.abstraction.UUIDKey;
+import ch.ttt.memogram.domain.blocker.Blocker;
 import ch.ttt.memogram.domain.task.Task;
-import ch.ttt.memogram.domain.task.TaskKey;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class BusinessConfig {
 
-    @Bean
-    public TaskQueryService taskQueryService(final DomainRepository<TaskKey, Task> taskRepository) {
-        return new TaskQueryService(taskRepository);
+    private static BlockerCreateCommandToBlockerConverter blockerCommandToBlockerConverter() {
+        return new BlockerCreateCommandToBlockerConverter();
+    }
+
+    private static BlockerUpdateCommandToBlockerConverter blockerUpdateCommandToBlockerConverter() {
+        return new BlockerUpdateCommandToBlockerConverter();
     }
 
     private static TaskUpdateCommandToTaskConverter taskUpdateCommandToTaskConverter() {
         return new TaskUpdateCommandToTaskConverter();
-    }
-
-    private static TaskUpdateCommandToTaskKeyConverter taskUpdateCommandToTaskKeyConverter() {
-        return new TaskUpdateCommandToTaskKeyConverter();
     }
 
     private static TaskCreateCommandToTaskConverter taskCreateCommandToTaskConverter() {
@@ -34,17 +35,22 @@ public class BusinessConfig {
     }
 
     @Bean
-    public TaskUpdateService taskUpdateService(final DomainRepository<TaskKey, Task> taskRepository) {
-        return new TaskUpdateService(taskRepository, taskUpdateCommandToTaskConverter(), taskUpdateCommandToTaskKeyConverter());
+    public TaskQueryService taskQueryService(final DomainRepository<UUIDKey, Task> taskRepository) {
+        return new TaskQueryService(taskRepository);
     }
 
     @Bean
-    public TaskCreateService taskCreateService(final DomainRepository<TaskKey, Task> taskRepository) {
-        return new TaskCreateService(taskRepository, taskCreateCommandToTaskConverter());
+    public TaskCommandService taskCommandService(final DomainRepository<UUIDKey, Task> taskRepository) {
+        return new TaskCommandService(taskRepository, taskCreateCommandToTaskConverter(), taskUpdateCommandToTaskConverter());
     }
 
     @Bean
-    public TaskDeleteService taskDeleteService(final DomainRepository<TaskKey, Task> taskRepository) {
-        return new TaskDeleteService(taskRepository);
+    public BlockerQueryService blockerQueryService(final DomainRepository<UUIDKey, Blocker> blockerRepository) {
+        return new BlockerQueryService(blockerRepository);
+    }
+
+    @Bean
+    public BlockerCommandService blockerCommandService(final DomainRepository<UUIDKey, Blocker> blockerRepository) {
+        return new BlockerCommandService(blockerRepository, blockerCommandToBlockerConverter(), blockerUpdateCommandToBlockerConverter());
     }
 }

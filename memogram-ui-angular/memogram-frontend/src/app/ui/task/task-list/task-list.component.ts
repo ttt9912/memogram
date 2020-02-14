@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ServiceCallTracker} from '../../../data/service-call-tracker';
 import {TaskDTO} from '../../../generated/memogram-services';
 import {TaskService} from '../../../business/task/task.service';
-import {TaskDataService} from '../../../data/task/task-data.service';
 import {OrderedTasks} from '../../../business/task/ordered-tasks';
 
 @Component({
@@ -13,18 +12,23 @@ import {OrderedTasks} from '../../../business/task/ordered-tasks';
 export class TaskListComponent implements OnInit {
   private orderedTasks: OrderedTasks;
   private tasksCall = new ServiceCallTracker<OrderedTasks>();
+  input: string;
 
-  constructor(private taskService: TaskService,
-              private taskDataService: TaskDataService) {
+  constructor(private taskService: TaskService) {
   }
 
   ngOnInit() {
     this.loadAll();
   }
 
+  onEnter() {
+    console.log(`Entered ${this.input}`);
+    this.input = '';
+  }
+
   loadAll() {
     this.tasksCall.execute(this.taskService.getTasks())
-      .subscribe(orderedTasks => this.orderedTasks = orderedTasks);
+        .subscribe(orderedTasks => this.orderedTasks = orderedTasks);
   }
 
   delete(uuid: string): void {
@@ -40,32 +44,28 @@ export class TaskListComponent implements OnInit {
       return 'no-deadline';
     }
 
-    if (this.isOverdue(task.deadline)) {
+    if (this.getDaysUntilNow(task.deadline) < 0) {
       return 'overdue';
     }
 
-    if (this.closerThan(task.deadline, 3)) {
+    if (this.getDaysUntilNow(task.deadline) < 3) {
       return 'hot';
     }
 
     return 'cold';
   }
 
-  private isOverdue(deadline: Date) {
-    return this.getMillisUntilNow(deadline) <= 0;
-  }
-
-  private closerThan(deadline: Date, numDays: number) {
-    return this.getDaysUntilNow(deadline) < numDays;
-  }
-
-  private getDaysUntilNow(date: Date): number {
-    const diff = this.getMillisUntilNow(date);
-    return Math.ceil(diff / (1000 * 3600 * 24));
+  addTask($event: string) {
+    console.log($event);
   }
 
   private getMillisUntilNow(date: Date): number {
     const today = new Date();
     return new Date(date).getTime() - today.getTime();
+  }
+
+  private getDaysUntilNow(date: Date): number {
+    const diff = this.getMillisUntilNow(date);
+    return Math.floor(diff / (1000 * 3600 * 24));
   }
 }

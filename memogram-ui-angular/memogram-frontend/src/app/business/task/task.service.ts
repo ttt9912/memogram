@@ -9,27 +9,34 @@ import {OrderedTasks} from './ordered-tasks';
   providedIn: 'root'
 })
 export class TaskService {
-  x: TaskDTO[];
-  y: TaskDTO[];
 
   constructor(private dataService: TaskDataService) {
   }
 
   getTasks(): Observable<OrderedTasks> {
     return this.dataService.getTasks().pipe(
-      map(taskDTOS => this.order(taskDTOS))
+        map(taskDTOS => this.order(taskDTOS))
     );
   }
 
   private order(taskDTOS: TaskDTO[]): OrderedTasks {
+    return new OrderedTasks(
+        this.orderByDeadline(taskDTOS),
+        this.getWithoutDeadline(taskDTOS));
+  }
 
-    const taskDTOS1 = taskDTOS
-      .filter(task => !!task.deadline)
-      .sort((a, b) =>
-        new Date(a.deadline).getTime() - new Date(b.deadline).getTime());
 
-    const taskDTOS2 = taskDTOS.filter(task => !task.deadline);
+  private orderByDeadline(taskDTOs: TaskDTO[]) {
+    return this.getWithDeadline(taskDTOs)
+        .sort((a, b) =>
+            new Date(a.deadline).getTime() - new Date(b.deadline).getTime());
+  }
 
-    return new OrderedTasks(taskDTOS1, taskDTOS2);
+  private getWithDeadline(taskDTOs: TaskDTO[]) {
+    return taskDTOs.filter(task => !!task.deadline);
+  }
+
+  private getWithoutDeadline(taskDTOs: TaskDTO[]) {
+    return taskDTOs.filter(task => !task.deadline);
   }
 }

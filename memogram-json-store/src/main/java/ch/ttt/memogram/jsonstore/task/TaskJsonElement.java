@@ -1,7 +1,5 @@
 package ch.ttt.memogram.jsonstore.task;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Value;
 
 import java.time.LocalDateTime;
@@ -12,6 +10,7 @@ public class TaskJsonElement {
     private String title;
     private LocalDateTime deadline;
 
+    /*
     @JsonCreator
     public TaskJsonElement(@JsonProperty("id") final String id,
                            @JsonProperty("title") final String title,
@@ -19,5 +18,5 @@ public class TaskJsonElement {
         this.id = id;
         this.title = title;
         this.deadline = deadline;
-    }
+    }*/
 }

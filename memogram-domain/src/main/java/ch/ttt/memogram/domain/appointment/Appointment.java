@@ -1,12 +1,13 @@
 package ch.ttt.memogram.domain.appointment;
 
-import lombok.Value;
+import ch.ttt.memogram.domain.abstraction.DomainEntity;
+import ch.ttt.memogram.domain.abstraction.UUIDKey;
+import ch.ttt.memogram.domain.shared.Timebox;
+import lombok.Data;
 
-import java.time.LocalDateTime;
-
-@Value
-public class Appointment {
-    private final String title;
-    private final LocalDateTime start;
-    private final LocalDateTime end;
+@Data
+public class Appointment implements DomainEntity<UUIDKey> {
+    private final UUIDKey key;
+    private String title;
+    private Timebox timebox;
 }
