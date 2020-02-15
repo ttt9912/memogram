@@ -1,15 +1,10 @@
-<div class="form-container">
-  <form (submit)="submit()" [formGroup]="inputForm">
-    <div class="form-controls">
-      <input class="input-field" formControlName="input">
-      <button [disabled]="inputForm.invalid" class="submit-button">
-        <i class="pi pi-chevron-circle-right"></i>
-      </button>
+<form (submit)="submit()" [formGroup]="inputForm" class="form-inline mb-2 mt-2">
+  <div style="display: flex">
+    <div class="form-group mr-1">
+      <input class="form-control" formControlName="input" type="text">
     </div>
-  </form>
-</div>
-
-<div class="ui-inputgroup">
-  <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
-  <input pInputText placeholder="Username" type="text">
-</div>
+    <button [disabled]="inputForm.invalid" class="btn btn-primary" type="submit">
+      <i class="fas fa-angle-double-right"></i>
+    </button>
+  </div>
+</form>

@@ -10,9 +10,13 @@ import {OrderedTasks} from '../../../business/task/ordered-tasks';
   styleUrls: ['./task-list.component.scss']
 })
 export class TaskListComponent implements OnInit {
-  private orderedTasks: OrderedTasks;
-  private tasksCall = new ServiceCallTracker<OrderedTasks>();
+  orderedTasks: OrderedTasks;
+
   input: string;
+
+  private getTasksCall = new ServiceCallTracker<OrderedTasks>();
+  private addTaskCall = new ServiceCallTracker<any>();
+  private deleteTaskCall = new ServiceCallTracker<any>();
 
   constructor(private taskService: TaskService) {
   }
@@ -21,18 +25,19 @@ export class TaskListComponent implements OnInit {
     this.loadAll();
   }
 
-  onEnter() {
-    console.log(`Entered ${this.input}`);
-    this.input = '';
+  loadAll() {
+    this.getTasksCall.execute(this.taskService.getTasks())
+      .subscribe(orderedTasks => this.orderedTasks = orderedTasks);
   }
 
-  loadAll() {
-    this.tasksCall.execute(this.taskService.getTasks())
-        .subscribe(orderedTasks => this.orderedTasks = orderedTasks);
+  createTask($event: string) {
+    this.addTaskCall.execute(this.taskService.createTask($event, null))
+      .subscribe(_ => this.loadAll());
   }
 
   delete(uuid: string): void {
-    console.log(`delete with id=${uuid}`);
+    this.deleteTaskCall.execute(this.taskService.deleteTask(uuid))
+      .subscribe(_ => this.loadAll());
   }
 
   showDetail(uuid: string): void {
@@ -53,10 +58,6 @@ export class TaskListComponent implements OnInit {
     }
 
     return 'cold';
-  }
-
-  addTask($event: string) {
-    console.log($event);
   }
 
   private getMillisUntilNow(date: Date): number {

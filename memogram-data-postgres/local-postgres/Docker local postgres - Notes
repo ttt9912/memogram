@@ -1,0 +1,22 @@
+https://github.com/khezen/compose-postgres
+
+---------------------------------
+local postgres
+---------------------------------
+go to local-postgres dir
+$ docker-compose up
+
+default credential   : postgres/localPW
+
+---------------------------------
+pgAdmin
+---------------------------------
+Browser: localhost:5050
+Login                : pgadmin4@pgadmin.org/admin
+
+Connect to server
+Host name/address    : postgres (docker service)
+Port                 : 5432
+Maintenance DB       : postgres
+Username             : postgres
+Password             : localPW

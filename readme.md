@@ -14,11 +14,91 @@ https://www.primefaces.org/showcase/ui/panel/grid.xhtml
 
 https://primefaces.github.io/primefaces/8_0/#/components/gridcss
 
+## Fontawesome
+1.) install (package.json)  
+`$ npm install --save @fortawesome/fontawesome-free`
+
+2.) include (
+- angular.json styles section
+- or styles.scss
+
+## Bootstrap
+### Spacing
+https://getbootstrap.com/docs/4.0/utilities/spacing/
+
+- `m` - margin
+- `p` - padding
+
+`mb` - margin-top, etc.
+
+
 
 # Heroku
 
-## GitHub Deployment
+## Heroku CLI
+`$ heroku apps` - list apps
 
-### Enable Java 11 on Heroku
-create file `system.properties` with
-environment variable `java.runtime.version=11`
+`$ heroku apps:info -a <APP_NAME>` - url, git, etc.
+
+`$ memogram-app-jsonstore % heroku run printenv -a <APP_NAME>` - port, JAVA_OPTS,
+environment variables, etc.
+
+
+
+## Deploy Docker Container
+There are two ways of how to use Docker on Heroku. 
+The first is to use the Heroku Container Registry. 
+It allows you to simply deploy your Docker images to Heroku. 
+The second option is to use Heroku to build our Docker images also for us, 
+which we will use here.
+
+### Build Docker Image
+- add Dockerfile
+- use dockerfile-maven-plugin
+
+#### Build from cli
+navigate to Dockerfile directory
+
+`$ docker build -t memogram-app .`
+
+`$ docker run -p 8080:8080 -t memogram-app`
+
+set $PORT for Heroku in the Dockerfile
+
+`$ docker run -e "PORT=8080" -t memogram-app`
+
+### Deploy Docker Image to Heroku
+https://dashboard.heroku.com/apps/memogram-trial/deploy/heroku-container
+
+#### Login
+`$ heroku container:login`
+
+#### Push Image
+navigate to Dockerfile directory
+
+**`$ heroku container:push web -a <HEROKU_APP_NAME>`**  
+`$ heroku container:push web -a memogram-trial`
+
+#### Release
+`$ heroku container:release web -a memogram-trial`
+
+## Heroku Postgres
+
+### Tiers & Plans
+https://devcenter.heroku.com/articles/heroku-postgres-plans#premium-tier
+
+#### Pricing
+https://elements.heroku.com/addons/heroku-postgresql
+
+#### Hobby Tier
+Available Plans: **hobby-dev** and **hobby-basic**
+
+### Add Postgres Addon
+**`$ heroku addons:create heroku-postgresql:<PLAN_NAME> -a <APP_NAME>`**  
+`$ heroku addons:create heroku-postgresql:hobby-dev -a memogram-trial`
+
+`DATABASE_URL` config var is added to your app’s configuration
+
+#### show config vars
+`$ heroku config -a <APP_NAME>`
+

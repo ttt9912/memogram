@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {TaskDTO} from '../../generated/memogram-services';
+import {TaskCreateCommand, TaskDTO} from '../../generated/memogram-services';
 import {HttpClient} from '@angular/common/http';
 
 @Injectable({
@@ -12,7 +12,15 @@ export class TaskDataService {
   constructor(private http: HttpClient) {
   }
 
-  getTasks(): Observable<TaskDTO[]> {
+  findAll(): Observable<TaskDTO[]> {
     return this.http.get<TaskDTO[]>(this.url);
+  }
+
+  create(command: TaskCreateCommand): Observable<any> {
+    return this.http.post(this.url, command);
+  }
+
+  delete(id: string): Observable<any> {
+    return this.http.delete(`${this.url}/${id}`);
   }
 }

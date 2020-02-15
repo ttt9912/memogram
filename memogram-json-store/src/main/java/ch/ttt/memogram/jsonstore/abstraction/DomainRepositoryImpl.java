@@ -5,7 +5,7 @@ import ch.ttt.memogram.domain.abstraction.DomainEntity;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
@@ -13,8 +13,8 @@ public abstract class DomainRepositoryImpl<KEY, ENTITY extends DomainEntity<KEY>
     private final JsonFileStore<KEY, ENTITY, JSON_DTO> store;
 
     @Override
-    public Collection<ENTITY> findAll() {
-        return store.values();
+    public List<ENTITY> findAll() {
+        return List.copyOf(store.values());
     }
 
     @Override

@@ -13,5 +13,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>memogram-app-jsonstore</module>
+        <module>memogram-app-postgres</module>
     </modules>
 </project>

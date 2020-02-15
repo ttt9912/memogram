@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>memogram-app-jsonstore</artifactId>
+    <artifactId>memogram-app-postgres</artifactId>
 
     <dependencies>
         <dependency>
@@ -18,7 +18,7 @@
         </dependency>
         <dependency>
             <groupId>ch.ttt</groupId>
-            <artifactId>memogram-json-store</artifactId>
+            <artifactId>memogram-data-postgres</artifactId>
         </dependency>
         <dependency>
             <groupId>ch.ttt</groupId>
@@ -57,4 +57,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
