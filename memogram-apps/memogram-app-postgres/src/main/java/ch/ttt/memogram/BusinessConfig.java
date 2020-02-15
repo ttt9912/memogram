@@ -4,7 +4,7 @@ import ch.ttt.memogram.business.task.command.TaskCommandService;
 import ch.ttt.memogram.business.task.command.converter.TaskCreateCommandToTaskConverter;
 import ch.ttt.memogram.business.task.command.converter.TaskUpdateCommandToTaskConverter;
 import ch.ttt.memogram.business.task.query.TaskQueryService;
-import ch.ttt.memogram.datapostgres.task.TaskRepositoryImpl;
+import ch.ttt.memogram.datajpa.task.TaskRepositoryImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

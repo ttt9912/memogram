@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 
 /*
  * run local postgres & pgAdmin (docker)
- * - Notes: memogram-data-postgres/local-postgres
+ * - Notes: memogram-data-jpa/memogram-postgres/local-postgres
  */
 @SpringBootApplication
 public class MemogramPostgresApp {

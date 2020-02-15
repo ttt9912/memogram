@@ -1,4 +1,4 @@
-package ch.ttt.memogram.datapostgres.util;
+package ch.ttt.memogram.datajpa.util;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;

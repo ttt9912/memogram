@@ -1,4 +1,4 @@
-package ch.ttt.memogram.datapostgres.task;
+package ch.ttt.memogram.datajpa.task;
 
 import lombok.Data;
 

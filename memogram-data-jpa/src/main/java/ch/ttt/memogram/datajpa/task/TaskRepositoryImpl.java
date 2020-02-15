@@ -1,7 +1,7 @@
-package ch.ttt.memogram.datapostgres.task;
+package ch.ttt.memogram.datajpa.task;
 
 import ch.ttt.memogram.business.abstraction.DomainRepository;
-import ch.ttt.memogram.datapostgres.util.RepositoryUtil;
+import ch.ttt.memogram.datajpa.util.RepositoryUtil;
 import ch.ttt.memogram.domain.abstraction.UUIDKey;
 import ch.ttt.memogram.domain.task.Task;
 import org.springframework.stereotype.Repository;

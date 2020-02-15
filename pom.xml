@@ -11,7 +11,7 @@
         <module>memogram-json-store</module>
         <module>memogram-ui-angular</module>
         <module>memogram-shared</module>
-        <module>memogram-data-postgres</module>
+        <module>memogram-data-jpa</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -76,6 +76,16 @@
             <dependency>
                 <groupId>ch.ttt</groupId>
                 <artifactId>memogram-data-postgres</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.ttt</groupId>
+                <artifactId>memogram-data-jpa</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.ttt</groupId>
+                <artifactId>memogram-postgres</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
         </dependencies>

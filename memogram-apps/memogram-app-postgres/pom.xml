@@ -18,11 +18,17 @@
         </dependency>
         <dependency>
             <groupId>ch.ttt</groupId>
-            <artifactId>memogram-data-postgres</artifactId>
+            <artifactId>memogram-ui-angular</artifactId>
         </dependency>
+        <!-- data access -->
         <dependency>
             <groupId>ch.ttt</groupId>
-            <artifactId>memogram-ui-angular</artifactId>
+            <artifactId>memogram-data-jpa</artifactId>
+        </dependency>
+        <!-- database -->
+        <dependency>
+            <groupId>ch.ttt</groupId>
+            <artifactId>memogram-postgres</artifactId>
         </dependency>
     </dependencies>
 

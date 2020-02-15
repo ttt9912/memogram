@@ -1,9 +1,9 @@
-package ch.ttt.memogram.datapostgres;
+package ch.ttt.memogram.postgres;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
-@PropertySource("classpath:memogram-datapostgres.properties")
-public class DataPostgresConfig {
+@PropertySource("classpath:memogram-postgres.properties")
+public class MemogramPostgresConfig {
 }
