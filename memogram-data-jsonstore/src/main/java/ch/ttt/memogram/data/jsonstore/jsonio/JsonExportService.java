@@ -20,7 +20,7 @@ public class JsonExportService {
     }
 
     public synchronized void writeFile(final String filename, final List<?> elements) {
-        final File file = getOrCreateFile(Paths.get("memogram-json-store", FILESTORE, filename));
+        final File file = getOrCreateFile(Paths.get("memogram-data-jsonstore", FILESTORE, filename));
         try {
             objectMapper.writeValue(file, elements);
         } catch (IOException e) {
