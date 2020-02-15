@@ -18,7 +18,7 @@
         </dependency>
         <dependency>
             <groupId>ch.ttt</groupId>
-            <artifactId>memogram-json-store</artifactId>
+            <artifactId>memogram-data-jsonstore</artifactId>
         </dependency>
         <dependency>
             <groupId>ch.ttt</groupId>

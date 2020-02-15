@@ -8,10 +8,10 @@
         <module>memogram-domain</module>
         <module>memogram-business</module>
         <module>memogram-service</module>
-        <module>memogram-json-store</module>
         <module>memogram-ui-angular</module>
         <module>memogram-shared</module>
         <module>memogram-data-jpa</module>
+        <module>memogram-data-jsonstore</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -65,7 +65,7 @@
             </dependency>
             <dependency>
                 <groupId>ch.ttt</groupId>
-                <artifactId>memogram-json-store</artifactId>
+                <artifactId>memogram-data-jsonstore</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <dependency>
