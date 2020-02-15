@@ -9,9 +9,8 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 public class TaskEntity {
-
     @Id
-    private String id;
+    private String uuid;
     private String title;
     private LocalDateTime deadline;
 }

@@ -1,55 +1,19 @@
 package ch.ttt.memogram.datajpa.task;
 
-import ch.ttt.memogram.business.abstraction.DomainRepository;
-import ch.ttt.memogram.datajpa.util.RepositoryUtil;
+import ch.ttt.memogram.datajpa.abstraction.DomainRepositoryImpl;
 import ch.ttt.memogram.domain.abstraction.UUIDKey;
 import ch.ttt.memogram.domain.task.Task;
+import ch.ttt.memogram.shared.converter.Converter;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 @Repository
-public class TaskRepositoryImpl implements DomainRepository<UUIDKey, Task> {
-    private final TaskDataJpaRepository dataJpaRepository;
+public class TaskRepositoryImpl extends DomainRepositoryImpl<UUIDKey, Task, String, TaskEntity> {
 
-    public TaskRepositoryImpl(final TaskDataJpaRepository dataJpaRepository) {
-        this.dataJpaRepository = dataJpaRepository;
-    }
-
-    @Override
-    public List<Task> findAll() {
-        return RepositoryUtil.toList(dataJpaRepository.findAll()).stream()
-                .map(this::createTask)
-                .collect(Collectors.toList());
-    }
-
-    private Task createTask(final TaskEntity taskEntity) {
-        return new Task(UUIDKey.from(taskEntity.getId()), taskEntity.getTitle(), taskEntity.getDeadline());
-    }
-
-    @Override
-    public void save(final Task entity) {
-        dataJpaRepository.save(createTaskEntity(entity));
-    }
-
-    private TaskEntity createTaskEntity(final Task entity) {
-        final TaskEntity taskEntity = new TaskEntity(); // TODO: mapstruct
-        taskEntity.setId(entity.getKey().getId());
-        taskEntity.setTitle(entity.getTitle());
-        taskEntity.setDeadline(entity.getDeadline());
-        return taskEntity;
-    }
-
-    @Override
-    public Optional<Task> findByKey(final UUIDKey uuidKey) {
-        return dataJpaRepository.findById(uuidKey.getId())
-                .map(this::createTask);
-    }
-
-    @Override
-    public void remove(final UUIDKey uuidKey) {
-        dataJpaRepository.deleteById(uuidKey.getId());
+    public TaskRepositoryImpl(final CrudRepository<TaskEntity, String> repository,
+                              final Converter<TaskEntity, Task> taskEntityTaskConverter,
+                              final Converter<Task, TaskEntity> ormEntityConverter,
+                              final Converter<UUIDKey, String> idConverter) {
+        super(repository, taskEntityTaskConverter, ormEntityConverter, idConverter);
     }
 }
