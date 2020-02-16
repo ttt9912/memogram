@@ -1,0 +1,3 @@
+build:
+  docker:
+    web: /memogram-apps/memogram-app-postgres/Dockerfile
