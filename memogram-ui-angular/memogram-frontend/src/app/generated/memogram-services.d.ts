@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 2.19.577 on 2020-02-15 14:28:36.
+// Generated using typescript-generator version 2.19.577 on 2020-02-16 13:54:17.
 
 export interface BlockerCreateCommand {
     title: string;

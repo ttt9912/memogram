@@ -1,18 +1,16 @@
 package ch.ttt.memogram;
 
-import ch.ttt.memogram.business.task.command.TaskCommandService;
-import ch.ttt.memogram.business.task.command.TaskCreateCommand;
-import ch.ttt.memogram.business.task.query.TaskQueryService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import java.time.LocalDateTime;
+import org.springframework.core.env.Environment;
 
 /*
  * run local postgres & pgAdmin (docker)
- * - Notes: memogram-data-jpa/memogram-postgres/local-postgres
+ * - Notes: memogram-data-jpa-postgres/local-postgres
+ *
+ * VM Options: -Dspring.profiles.active=dev
  */
 @SpringBootApplication
 public class MemogramPostgresApp {
@@ -22,10 +20,19 @@ public class MemogramPostgresApp {
     }
 
     @Bean
-    CommandLineRunner run(TaskCommandService commandService, TaskQueryService queryService) {
+    CommandLineRunner run(Environment environment) {
         return args -> {
-            commandService.create(new TaskCreateCommand("Clean", LocalDateTime.now()));
-            queryService.findAll().forEach(System.out::println);
+            System.out.println("--------------------- env ---------------------");
+            System.out.printf("Profiles: %s\n", environment.getActiveProfiles());
+            System.out.printf("DATABASE_URL: %s\n", environment.getProperty("DATABASE_URL"));
+            System.out.printf("SPRING_DATASOURCE_URL: %s\n", environment.getProperty("SPRING_DATASOURCE_URL"));
+            System.out.printf("SPRING_DATASOURCE_USERNAME: %s\n", environment.getProperty("SPRING_DATASOURCE_USERNAME"));
+            System.out.printf("SPRING_DATASOURCE_PASSWORD: %s\n", environment.getProperty("SPRING_DATASOURCE_PASSWORD"));
+
+            System.out.printf("JDBC_DATABASE_URL: %s\n", environment.getProperty("JDBC_DATABASE_URL"));
+            System.out.printf("JDBC_DATABASE_USERNAME: %s\n", environment.getProperty("JDBC_DATABASE_USERNAME"));
+            System.out.printf("JDBC_DATABASE_PASSWORD: %s\n", environment.getProperty("JDBC_DATABASE_PASSWORD"));
+            System.out.println("-----------------------------------------------");
         };
     }
 }

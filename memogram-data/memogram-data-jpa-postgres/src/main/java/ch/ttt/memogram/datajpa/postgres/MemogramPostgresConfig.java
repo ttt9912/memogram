@@ -1,4 +1,4 @@
-package ch.ttt.memogram.postgres;
+package ch.ttt.memogram.datajpa.postgres;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;

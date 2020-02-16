@@ -56,7 +56,7 @@ which we will use here.
 - add Dockerfile
 - use dockerfile-maven-plugin
 
-#### Build from cli
+#### Build manually from cli
 navigate to Dockerfile directory
 
 `$ docker build -t memogram-app .`
@@ -101,4 +101,20 @@ Available Plans: **hobby-dev** and **hobby-basic**
 
 #### show config vars
 `$ heroku config -a <APP_NAME>`
+
+#### Postgres info
+`$ heroku pg:info -a <APP_NAME>`
+
+### Spring connection properties
+https://devcenter.heroku.com/articles/connecting-to-relational-databases-on-heroku-with-java#using-the-spring_datasource_url-in-a-spring-boot-app
+
+Heroku will automatically populate the environment variables 
+- `SPRING_DATASOURCE_URL`
+- `SPRING_DATASOURCE_USERNAME`
+- `SPRING_DATASOURCE_PASSWORD`
+
+just use them in `application.yml`
+
+## Procfile TODO
+setting environment variables
 

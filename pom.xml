@@ -10,8 +10,7 @@
         <module>memogram-service</module>
         <module>memogram-ui-angular</module>
         <module>memogram-shared</module>
-        <module>memogram-data-jpa</module>
-        <module>memogram-data-jsonstore</module>
+        <module>memogram-data</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -40,53 +39,43 @@
         <dependencies>
             <dependency>
                 <groupId>ch.ttt</groupId>
-                <artifactId>memogram-shared</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>ch.ttt</groupId>
-                <artifactId>memogram-domain</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>ch.ttt</groupId>
                 <artifactId>memogram-business</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>ch.ttt</groupId>
-                <artifactId>memogram-service</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>ch.ttt</groupId>
                 <artifactId>memogram-data-jpa</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.ttt</groupId>
+                <artifactId>memogram-data-jpa-postgres</artifactId>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>ch.ttt</groupId>
                 <artifactId>memogram-data-jsonstore</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.ttt</groupId>
+                <artifactId>memogram-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.ttt</groupId>
+                <artifactId>memogram-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.ttt</groupId>
+                <artifactId>memogram-shared</artifactId>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>ch.ttt</groupId>
                 <artifactId>memogram-ui-angular</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>ch.ttt</groupId>
-                <artifactId>memogram-data-postgres</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>ch.ttt</groupId>
-                <artifactId>memogram-data-jpa</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>ch.ttt</groupId>
-                <artifactId>memogram-postgres</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
