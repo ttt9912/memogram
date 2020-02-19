@@ -48,6 +48,7 @@ environment variables, etc.
 - Use Github deployments
 - **Procfile** - defines what to do after build completed
 - **system.properties File** - set java version 11 etc.
+- **spring-boot-maven-plugin** - included in app pom
 
 
 ## Deploy Docker Container
