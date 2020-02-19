@@ -1,0 +1,10 @@
+setup:
+  addons:
+    - plan: heroku-postgresql
+build:
+  docker:
+    web: /memogram-apps/memogram-app-postgres/Dockerfile
+release:
+  image: web
+# run:
+#  web: uwsgi --http 0:$PORT --wsgi-file ./config/wsgi.py --master --processes 4 --threads 2
