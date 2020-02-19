@@ -11,9 +11,24 @@ environment variables, etc.
 ## GitHub Deployment
 - Use Github deployments
 - **Procfile** - defines what to do after build completed
-- **system.properties File** - set java version 11 etc.
+- **system.properties file** - set java version 11 etc.
 - **spring-boot-maven-plugin** - included in app pom
 
+### Procfile
+location: root folder
+
+content:
+```text
+web: java -jar -Dserver.port=$PORT memogram-apps/memogram-app-postgres/target/memogram-app-postgres-0.0.1-SNAPSHOT.jar
+```
+
+### system.properties file
+location: root folder
+
+content:
+```text
+java.runtime.version=11
+```
 
 ## Docker Container Deployment
 There are two ways of how to use Docker on Heroku. 
@@ -26,6 +41,7 @@ to Heroku registry
 
 
 ## Deploy with heroku.yml
+TODO
 
 
 ## Deploy with Heroku Container Registry
@@ -37,8 +53,7 @@ to Heroku registry
 #### Build manually from cli
 navigate to Dockerfile directory
 
-`$ docker build -t memogram-app .`
-
+`$ docker build -t memogram-app .`  
 `$ docker run -p 8080:8080 -t memogram-app`
 
 set $PORT for Heroku in the Dockerfile
@@ -58,7 +73,7 @@ navigate to Dockerfile directory
 `$ heroku container:push web -a memogram-trial`
 
 #### Release
-`$ heroku container:release web -a memogram-trial`
+`$ heroku container:release web -a <HEROKU_APP_NAME>`
 
 
 
