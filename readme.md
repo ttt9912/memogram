@@ -44,13 +44,19 @@ https://getbootstrap.com/docs/4.0/utilities/spacing/
 environment variables, etc.
 
 
+## Deploy Sourcecode
+- Use Github deployments
+- **Procfile** - defines what to do after build completed
+
 
 ## Deploy Docker Container
 There are two ways of how to use Docker on Heroku. 
-The first is to use the Heroku Container Registry. 
-It allows you to simply deploy your Docker images to Heroku. 
-The second option is to use Heroku to build our Docker images also for us, 
-which we will use here.
+
+- **Heroku Container Registry** - build images locally and push them
+to Heroku registry
+
+- **heroku.yml** - push sources to heroku git repository 
+`git push heroku master` and let heroku build the images
 
 ### Build Docker Image
 - add Dockerfile

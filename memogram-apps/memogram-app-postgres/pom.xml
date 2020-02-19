@@ -31,4 +31,17 @@
             <artifactId>memogram-data-jpa-postgres</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <!-- create executable jar -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>ch.ttt.memogram.MemogramPostgresApp</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
