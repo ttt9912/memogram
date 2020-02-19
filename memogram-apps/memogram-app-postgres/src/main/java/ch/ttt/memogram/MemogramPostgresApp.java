@@ -23,7 +23,6 @@ public class MemogramPostgresApp {
     CommandLineRunner run(Environment environment) {
         return args -> {
             System.out.println("--------------------- env ---------------------");
-            System.out.printf("Profiles: %s\n", environment.getActiveProfiles());
             System.out.printf("DATABASE_URL: %s\n", environment.getProperty("DATABASE_URL"));
             System.out.printf("SPRING_DATASOURCE_URL: %s\n", environment.getProperty("SPRING_DATASOURCE_URL"));
             System.out.printf("SPRING_DATASOURCE_USERNAME: %s\n", environment.getProperty("SPRING_DATASOURCE_USERNAME"));

@@ -1,41 +1,4 @@
-# Frontend
-
-## PrimeNG
-
-### Prime Icons
-https://www.primefaces.org/primeng/#/icons
-- icons
-- spinner
-
-### Grid CSS
-Grid CSS is a lightweight responsive layout utility optimized for mobile devices, tablets and desktops.
-
-https://www.primefaces.org/showcase/ui/panel/grid.xhtml
-
-https://primefaces.github.io/primefaces/8_0/#/components/gridcss
-
-## Fontawesome
-1.) install (package.json)  
-`$ npm install --save @fortawesome/fontawesome-free`
-
-2.) include (
-- angular.json styles section
-- or styles.scss
-
-## Bootstrap
-### Spacing
-https://getbootstrap.com/docs/4.0/utilities/spacing/
-
-- `m` - margin
-- `p` - padding
-
-`mb` - margin-top, etc.
-
-
-
-# Heroku
-
-## Heroku CLI
+# Heroku CLI
 `$ heroku apps` - list apps
 
 `$ heroku apps:info -a <APP_NAME>` - url, git, etc.
@@ -43,22 +6,29 @@ https://getbootstrap.com/docs/4.0/utilities/spacing/
 `$ memogram-app-jsonstore % heroku run printenv -a <APP_NAME>` - port, JAVA_OPTS,
 environment variables, etc.
 
+# Deploy to Heroku
 
-## Deploy Sourcecode
+## GitHub Deployment
 - Use Github deployments
 - **Procfile** - defines what to do after build completed
 - **system.properties File** - set java version 11 etc.
 - **spring-boot-maven-plugin** - included in app pom
 
 
-## Deploy Docker Container
+## Docker Container Deployment
 There are two ways of how to use Docker on Heroku. 
+
+- **heroku.yml** - push sources to heroku git repository 
+`git push heroku master` and let heroku build the images
 
 - **Heroku Container Registry** - build images locally and push them
 to Heroku registry
 
-- **heroku.yml** - push sources to heroku git repository 
-`git push heroku master` and let heroku build the images
+
+## Deploy with heroku.yml
+
+
+## Deploy with Heroku Container Registry
 
 ### Build Docker Image
 - add Dockerfile
@@ -90,7 +60,10 @@ navigate to Dockerfile directory
 #### Release
 `$ heroku container:release web -a memogram-trial`
 
-## Heroku Postgres
+
+
+
+# Heroku Postgres
 
 ### Tiers & Plans
 https://devcenter.heroku.com/articles/heroku-postgres-plans#premium-tier
@@ -121,8 +94,9 @@ Heroku will automatically populate the environment variables
 - `SPRING_DATASOURCE_USERNAME`
 - `SPRING_DATASOURCE_PASSWORD`
 
-just use them in `application.yml`
+- `JDBC_DATABASE_URL`
+- `JDBC_DATABASE_USERNAME`
+- `JDBC_DATABASE_PASSWORD`
 
-## Procfile TODO
-setting environment variables
+just use them in `application.yml` (does not directly work with containers)
 
