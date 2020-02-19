@@ -47,6 +47,7 @@ environment variables, etc.
 ## Deploy Sourcecode
 - Use Github deployments
 - **Procfile** - defines what to do after build completed
+- **system.properties File** - set java version 11 etc.
 
 
 ## Deploy Docker Container
