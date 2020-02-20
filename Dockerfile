@@ -7,6 +7,7 @@ COPY . /tmp/
 WORKDIR /tmp/
 RUN mvn package
 
-ADD ./memogram-apps/memogram-app-postgres/target/*.jar app.jar
+ADD /tmp/memogram-apps/memogram-app-postgres/target/*.jar app.jar
+
 ENV JAVA_OPTS="-Dserver.port=$PORT -Djava.security.egd=file:/dev/./urandom"
 CMD [ "sh", "-c", "java $JAVA_OPTS -jar /app.jar" ]
