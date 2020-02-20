@@ -41,7 +41,32 @@ to Heroku registry
 
 
 ## Deploy with heroku.yml
-TODO
+
+### 1. Create heroku.yml
+- `setup` - Specifies the **add-ons** and **config vars**
+
+- `build` - Specifies the `Dockerfile` to build. 
+
+**Build config vars**: the `config` field of the build section allows 
+you set environment variables available to the build environment. 
+Variables set in this section do not create runtime config vars. 
+Also runtime config vars (e.g., those set with heroku config:set) are 
+not available at build-time.
+
+- `release` - 
+
+- `run` - without `run` section, Heroku uses the `CMD` specified in 
+the `Dockerfile`.
+
+### 2. set stack to container
+`$ heroku stack:set container`
+
+### 3. push to heroku Git repo
+`$ git push heroku master`
+
+Heroku will use `run` command from `heroku.yml` (resp. 
+`CMD` from `Dockerfile`) instead of `Procfile`.
+
 
 
 ## Deploy with Heroku Container Registry
