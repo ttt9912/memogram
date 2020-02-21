@@ -9,6 +9,9 @@ public class TaskUpdateCommandToTaskConverter implements Converter<TaskUpdateCom
 
     @Override
     public Task convert(final TaskUpdateCommand element) {
-        return new Task(UUIDKey.from(element.getUuid()), element.getTitle(), element.getDeadline());
+        return new Task(UUIDKey.from(element.getUuid()),
+                element.getTitle(),
+                element.getDeadline(),
+                element.getTags());
     }
 }

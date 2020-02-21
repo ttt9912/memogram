@@ -8,6 +8,8 @@ public class TaskCreateCommandToTaskConverter implements Converter<TaskCreateCom
 
     @Override
     public Task convert(final TaskCreateCommand element) {
-        return Task.from(element.getTitle(), element.getDeadline());
+        return Task.from(element.getTitle(),
+                element.getDeadline(),
+                element.getTags());
     }
 }
