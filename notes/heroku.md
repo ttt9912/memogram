@@ -1,16 +1,16 @@
 # Heroku CLI
 `$ heroku apps` - list apps
 
-`$ heroku apps:info -a <APP_NAME>` - url, git, etc.
+`$ heroku apps:info -a <HEROKU_APP_NAME>` - url, git, etc.
 
-`$ heroku run printenv -a <APP_NAME>` - port, JAVA_OPTS,
+`$ heroku run printenv -a <HEROKU_APP_NAME>` - port, JAVA_OPTS,
 environment variables, etc.
 
 # Deploy to Heroku
 
 ## GitHub Deployment
 - Use Github deployments
-- `$ heroku stack:set heroku-18 -a <APP_NAME>`
+- `$ heroku stack:set heroku-18 -a <HEROKU_APP_NAME>`
 - **Procfile** - defines what to do after build completed
 - **system.properties file** - set java version 11 etc.
 - **spring-boot-maven-plugin** - included in app pom
@@ -62,7 +62,10 @@ not available at build-time.
 - `run` - without `run` section, Heroku uses the `CMD` specified in 
 the `Dockerfile`.
 
-### 3. push to heroku Git repo
+### 3. Register heroku Git repo
+`$ heroku git:remote -a <HEROKU_APP_NAME>`
+
+### 4. push to heroku Git repo
 `$ git push heroku master`
 
 Heroku will use `run` command from `heroku.yml` (resp. 
@@ -116,16 +119,16 @@ https://elements.heroku.com/addons/heroku-postgresql
 Available Plans: **hobby-dev** and **hobby-basic**
 
 ### Add Postgres Addon
-**`$ heroku addons:create heroku-postgresql:<PLAN_NAME> -a <APP_NAME>`**  
+**`$ heroku addons:create heroku-postgresql:<PLAN_NAME> -a <HEROKU_APP_NAME>`**  
 `$ heroku addons:create heroku-postgresql:hobby-dev -a memogram-trial`
 
 `DATABASE_URL` config var is added to your app’s configuration
 
 #### show config vars
-`$ heroku config -a <APP_NAME>`
+`$ heroku config -a <HEROKU_APP_NAME>`
 
 #### Postgres info
-`$ heroku pg:info -a <APP_NAME>`
+`$ heroku pg:info -a <HEROKU_APP_NAME>`
 
 ### Spring connection properties
 https://devcenter.heroku.com/articles/connecting-to-relational-databases-on-heroku-with-java#using-the-spring_datasource_url-in-a-spring-boot-app
