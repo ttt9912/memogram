@@ -3,7 +3,7 @@
 
 `$ heroku apps:info -a <APP_NAME>` - url, git, etc.
 
-`$ memogram-app-jsonstore % heroku run printenv -a <APP_NAME>` - port, JAVA_OPTS,
+`$ heroku run printenv -a <APP_NAME>` - port, JAVA_OPTS,
 environment variables, etc.
 
 # Deploy to Heroku
