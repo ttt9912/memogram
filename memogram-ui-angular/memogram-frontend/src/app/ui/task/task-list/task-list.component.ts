@@ -31,7 +31,7 @@ export class TaskListComponent implements OnInit {
   }
 
   createTask($event: string) {
-    this.addTaskCall.execute(this.taskService.createTask($event, null))
+    this.addTaskCall.execute(this.taskService.createTask($event, null, []))
       .subscribe(_ => this.loadAll());
   }
 

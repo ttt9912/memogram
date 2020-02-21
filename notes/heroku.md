@@ -10,6 +10,7 @@ environment variables, etc.
 
 ## GitHub Deployment
 - Use Github deployments
+- `$ heroku stack:set heroku-18 -a <APP_NAME>`
 - **Procfile** - defines what to do after build completed
 - **system.properties file** - set java version 11 etc.
 - **spring-boot-maven-plugin** - included in app pom
@@ -42,7 +43,10 @@ to Heroku registry
 
 ## Deploy with heroku.yml
 
-### 1. Create heroku.yml
+### 1. set stack to container
+`$ heroku stack:set container`
+
+### 2. Create heroku.yml
 - `setup` - Specifies the **add-ons** and **config vars**
 
 - `build` - Specifies the `Dockerfile` to build. 
@@ -57,9 +61,6 @@ not available at build-time.
 
 - `run` - without `run` section, Heroku uses the `CMD` specified in 
 the `Dockerfile`.
-
-### 2. set stack to container
-`$ heroku stack:set container`
 
 ### 3. push to heroku Git repo
 `$ git push heroku master`

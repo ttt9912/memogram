@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {TaskDataService} from '../../data/task/task-data.service';
 import {Observable} from 'rxjs';
-import {TaskCreateCommand, TaskDTO} from '../../generated/memogram-services';
+import {Tag, TaskCreateCommand, TaskDTO} from '../../generated/memogram-services';
 import {map} from 'rxjs/operators';
 import {OrderedTasks} from './ordered-tasks';
 
@@ -19,8 +19,8 @@ export class TaskService {
     );
   }
 
-  createTask(title: string, deadline: Date): Observable<any> {
-    const command: TaskCreateCommand = {title, deadline};
+  createTask(title: string, deadline: Date, tags: Tag[]): Observable<any> {
+    const command: TaskCreateCommand = {title, deadline, tags};
     return this.dataService.create(command);
   }
 
