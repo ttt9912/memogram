@@ -40,7 +40,7 @@
                 <executions>
                     <execution>
                         <id>generate</id>
-                        <phase>validate</phase> <!-- TODO: right phase? -->
+                        <phase>generate-sources</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
@@ -108,7 +108,6 @@
                 <executions>
                     <execution>
                         <id>copy-resources</id>
-                        <phase>validate</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
