@@ -10,6 +10,3 @@ ENV PORT=$PORT
 COPY docker-run.sh /run.sh
 RUN chmod +x /run.sh
 CMD ["/run.sh"]
-
-ENV JAVA_OPTS="-Dserver.port=$PORT -Djava.security.egd=file:/dev/./urandom"
-CMD [ "sh", "-c", "java $JAVA_OPTS -jar /app.jar" ]
