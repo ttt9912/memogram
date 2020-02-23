@@ -21,10 +21,6 @@ export class TaskListComponent implements OnInit {
 
   ngOnInit() {
     this.loadAll();
-
-    // trial
-    this.taskService.getTasks()
-      .subscribe(res => this.tasks = res.withoudDeadline);
   }
 
   loadAll() {
@@ -35,13 +31,9 @@ export class TaskListComponent implements OnInit {
     // TODO track this call
     this.taskService.createTask($event, null, [])
       .subscribe(_ => this.loadAll());
-
-    // trial
-
   }
 
   delete(uuid: string): void {
-    // TODO track this call
     this.taskService.deleteTask(uuid)
       .subscribe(_ => this.loadAll());
   }
