@@ -40,7 +40,7 @@
                 <executions>
                     <execution>
                         <id>generate</id>
-                        <phase>generate-sources</phase>
+                        <phase>generate-sources</phase> <!-- generate before npm build -->
                         <goals>
                             <goal>generate</goal>
                         </goals>
@@ -102,17 +102,18 @@
                 </executions>
             </plugin>
 
-            <!-- create a webjar -->
+            <!-- create webjar -->
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <executions>
                     <execution>
                         <id>copy-resources</id>
+                        <phase>verify</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/classes/resources/</outputDirectory>
+                            <outputDirectory>${project.build.directory}/classes/resources/static</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>${project.basedir}/memogram-frontend/dist/memogram-frontend/</directory>

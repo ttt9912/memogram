@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ServiceCallTracker} from '../../../data/service-call-tracker';
 import {TaskDTO} from '../../../generated/memogram-services';
 import {TaskService} from '../../../business/task/task.service';
 import {OrderedTasks} from '../../../business/task/ordered-tasks';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-task-list',
@@ -10,33 +10,39 @@ import {OrderedTasks} from '../../../business/task/ordered-tasks';
   styleUrls: ['./task-list.component.scss']
 })
 export class TaskListComponent implements OnInit {
-  orderedTasks: OrderedTasks;
+  orderedTasks$: Observable<OrderedTasks>;
+
+  tasks: TaskDTO[];
 
   input: string;
-
-  private getTasksCall = new ServiceCallTracker<OrderedTasks>();
-  private addTaskCall = new ServiceCallTracker<any>();
-  private deleteTaskCall = new ServiceCallTracker<any>();
 
   constructor(private taskService: TaskService) {
   }
 
   ngOnInit() {
     this.loadAll();
+
+    // trial
+    this.taskService.getTasks()
+      .subscribe(res => this.tasks = res.withoudDeadline);
   }
 
   loadAll() {
-    this.getTasksCall.execute(this.taskService.getTasks())
-      .subscribe(orderedTasks => this.orderedTasks = orderedTasks);
+    this.orderedTasks$ = this.taskService.getTasks();
   }
 
   createTask($event: string) {
-    this.addTaskCall.execute(this.taskService.createTask($event, null, []))
+    // TODO track this call
+    this.taskService.createTask($event, null, [])
       .subscribe(_ => this.loadAll());
+
+    // trial
+
   }
 
   delete(uuid: string): void {
-    this.deleteTaskCall.execute(this.taskService.deleteTask(uuid))
+    // TODO track this call
+    this.taskService.deleteTask(uuid)
       .subscribe(_ => this.loadAll());
   }
 

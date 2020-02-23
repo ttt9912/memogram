@@ -15,7 +15,8 @@ public abstract class DomainQueryController<KEY, ENTITY extends DomainEntity<KEY
     private final Converter<ENTITY, DTO> dtoConverter;
 
     @GetMapping
-    public List<DTO> findAll() {
+    public List<DTO> findAll() throws InterruptedException {
+        Thread.sleep(1000);
         return dtoConverter.convertAll(queryService.findAll());
     }
 }

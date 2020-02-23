@@ -11,6 +11,9 @@ import java.util.stream.Collectors;
 public final class ListConverter {
 
     public static <ELEMENT, RESULT> List<RESULT> convertList(final List<ELEMENT> elements, final Function<ELEMENT, RESULT> mapper) {
+        if (elements == null) {
+            return null;
+        }
         return elements.stream()
                 .map(mapper)
                 .collect(Collectors.toList());

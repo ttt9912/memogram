@@ -8,12 +8,14 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {ButtonModule, InputTextModule, PanelModule, PickListModule} from 'primeng';
 import {InputComponent} from './ui/shared/input/input.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {RequestTrackerPipe} from './common/request-tracker.pipe';
 
 @NgModule({
     declarations: [
-        AppComponent,
-        TaskListComponent,
-        InputComponent,
+      AppComponent,
+      TaskListComponent,
+      InputComponent,
+      RequestTrackerPipe,
     ],
     imports: [
         BrowserModule,
