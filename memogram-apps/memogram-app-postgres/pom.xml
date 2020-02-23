@@ -40,12 +40,12 @@
                 <executions>
                     <execution>
                         <id>copy-resources</id>
-                        <phase>verify</phase>
+                        <phase>process-resources</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/classes/resources</outputDirectory>
+                            <outputDirectory>${project.basedir}/src/main/resources/static</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>
@@ -57,6 +57,7 @@
                     </execution>
                 </executions>
             </plugin>
+
             <!-- create executable jar -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
