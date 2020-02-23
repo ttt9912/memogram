@@ -45,7 +45,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.basedir}/src/main/resources/static</outputDirectory>
+                            <outputDirectory>${project.basedir}/src/main/resources/public</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>
