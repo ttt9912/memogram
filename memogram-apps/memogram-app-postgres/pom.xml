@@ -16,11 +16,10 @@
             <groupId>ch.ttt</groupId>
             <artifactId>memogram-service</artifactId>
         </dependency>
-        <!--
         <dependency>
             <groupId>ch.ttt</groupId>
             <artifactId>memogram-ui-angular</artifactId>
-        </dependency> -->
+        </dependency>
         <!-- data access -->
         <dependency>
             <groupId>ch.ttt</groupId>
@@ -35,6 +34,29 @@
 
     <build>
         <plugins>
+            <!-- copy frontend -->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/classes/resources/static</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>
+                                        ${project.parent.parent.basedir}/memogram-ui-angular/memogram-frontend/dist/memogram-frontend/
+                                    </directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <!-- create executable jar -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
