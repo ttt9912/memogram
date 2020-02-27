@@ -121,12 +121,12 @@
                 <executions>
                     <execution>
                         <id>copy-resources</id>
-                        <phase>verify</phase>
+                        <phase>generate-sources</phase> <!-- TODO right phase? -->
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/classes/resources/static</outputDirectory>
+                            <outputDirectory>${project.build.directory}/classes/resources</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>${project.basedir}/memogram-frontend/dist/memogram-frontend/</directory>
