@@ -1,3 +1,0 @@
-build:
-  docker:
-    web: memogram-apps/memogram-app-jsonstore/Dockerfile
