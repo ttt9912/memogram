@@ -7,8 +7,6 @@ import ch.ttt.memogram.domain.task.Task;
 import ch.ttt.memogram.shared.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import static ch.ttt.memogram.shared.converter.ListConverter.convertList;
-
 @Component
 public class TaskEntityToTaskConverter implements Converter<TaskEntity, Task> {
 
@@ -17,6 +15,6 @@ public class TaskEntityToTaskConverter implements Converter<TaskEntity, Task> {
         return new Task(UUIDKey.from(element.getUuid()),
                 element.getTitle(),
                 element.getDeadline(),
-                convertList(element.getTags(), Tag::new));
+                Converter.convertList(element.getTags(), Tag::new));
     }
 }

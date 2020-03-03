@@ -34,7 +34,7 @@
 
     <build>
         <plugins>
-            <!-- copy frontend -->
+            <!-- copy frontend
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <executions>
@@ -56,7 +56,7 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> -->
 
             <!-- create executable jar -->
             <plugin>

@@ -1,0 +1,11 @@
+<div *ngIf="topic.notes">
+  <div>
+    <!--<h2>{{topic.title}}</h2>-->
+  </div>
+  <app-input (submitted)="createNote($event)"></app-input>
+  <div *ngFor="let note of topic.notes" class="card">
+    <div class="card-body">
+      {{note.text}}
+    </div>
+  </div>
+</div>

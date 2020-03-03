@@ -1,10 +1,16 @@
 package ch.ttt.memogram;
 
+import ch.ttt.memogram.data.jsonstore.topic.TopicRepository;
+import ch.ttt.memogram.domain.topic.Note;
+import ch.ttt.memogram.domain.topic.Topic;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
+
+import java.util.List;
+import java.util.UUID;
 
 @SpringBootApplication
 public class MemogramJsonStoreApp {
@@ -27,5 +33,27 @@ public class MemogramJsonStoreApp {
             System.out.printf("JDBC_DATABASE_PASSWORD: %s\n", environment.getProperty("JDBC_DATABASE_PASSWORD"));
             System.out.println("-----------------------------------------------");
         };
+    }
+
+    @Bean
+    CommandLineRunner data(TopicRepository topicRepository) {
+        return args -> {
+            topicRepository.findAll().forEach(System.out::println);
+
+            final Topic topic = createDummyTopic();
+            // topicRepository.save(topic);
+        };
+    }
+
+    private Topic createDummyTopic() {
+        final Note note1 = new Note();
+        note1.setText("buy clothes");
+        final Note note2 = new Note();
+        note2.setText("buy socks");
+        final Topic topic = new Topic();
+        topic.setKey(UUID.randomUUID());
+        topic.setTitle("Test2");
+        topic.setNotes(List.of(note1, note2));
+        return topic;
     }
 }

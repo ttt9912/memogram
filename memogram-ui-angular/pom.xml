@@ -106,6 +106,7 @@
                             <classPatterns>
                                 <pattern>ch.ttt.memogram.service.**DTO</pattern>
                                 <pattern>ch.ttt.memogram.business.**Command</pattern>
+                                <pattern>ch.ttt.memogram.domain.**</pattern>
                             </classPatterns>
                             <outputFile>${project.basedir}/memogram-frontend/src/app/generated/memogram-services.d.ts
                             </outputFile>

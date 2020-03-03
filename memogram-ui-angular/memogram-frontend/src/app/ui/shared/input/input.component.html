@@ -1,9 +1,7 @@
-<form (submit)="submit()" [formGroup]="inputForm" class="form-inline mb-2 mt-2">
+<form (submit)="submit()" [formGroup]="inputForm">
   <div style="display: flex">
-    <div class="form-group mr-1">
-      <input class="form-control" formControlName="input" type="text">
-    </div>
-    <button [disabled]="inputForm.invalid" class="btn btn-primary" type="submit">
+    <input class="form-control" formControlName="input" type="text">
+    <button *ngIf="!inputForm.invalid" class="btn btn-dark" type="submit">
       <i class="fas fa-angle-double-right"></i>
     </button>
   </div>
