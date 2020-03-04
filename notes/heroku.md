@@ -6,6 +6,9 @@
 `$ heroku run printenv -a <HEROKU_APP_NAME>` - port, JAVA_OPTS,
 environment variables, etc.
 
+`$ heroku logs -a <HEROKU_APP_NAME> -t` - logs as continuous stream
+
+
 # Deploy to Heroku
 
 ## GitHub Deployment
