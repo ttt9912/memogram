@@ -116,13 +116,13 @@
                 </executions>
             </plugin>
 
-            <!-- create webjar -->
+            <!-- create webjar
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <executions>
                     <execution>
                         <id>copy-resources</id>
-                        <phase>generate-sources</phase> <!-- TODO right phase? -->
+                        <phase>generate-sources</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
@@ -136,7 +136,7 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
 </project>
