@@ -34,18 +34,24 @@
 
     <build>
         <plugins>
-            <!-- copy frontend
+            <!-- create executable jar -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <!-- copy frontend -->
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <executions>
                     <execution>
                         <id>copy-resources</id>
-                        <phase>process-resources</phase>
+                        <phase>generate-sources</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.basedir}/src/main/resources/public</outputDirectory>
+                            <outputDirectory>${project.build.directory}/classes/resources</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>
@@ -56,12 +62,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin> -->
-
-            <!-- create executable jar -->
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
