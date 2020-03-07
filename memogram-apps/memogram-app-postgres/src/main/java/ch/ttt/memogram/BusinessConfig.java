@@ -28,4 +28,11 @@ public class BusinessConfig {
     public TaskCommandService taskCommandService(final TaskRepositoryImpl taskRepository) {
         return new TaskCommandService(taskRepository, taskCreateCommandToTaskConverter(), taskUpdateCommandToTaskConverter());
     }
+
+    /*
+    @Bean
+    public TopicService topicService(TopicRepository topicRepository) {
+        return new TopicService(topicRepository);
+    }
+     */
 }

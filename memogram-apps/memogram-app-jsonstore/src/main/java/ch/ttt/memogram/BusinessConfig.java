@@ -34,7 +34,7 @@ public class BusinessConfig {
     }
 
     @Bean
-    public TopicService topicService(TopicRepository topicRepository) {
+    public TopicService topicService(final TopicRepository topicRepository) {
         return new TopicService(topicRepository);
     }
 }

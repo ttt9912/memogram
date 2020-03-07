@@ -1,15 +1,6 @@
 package ch.ttt.memogram.service.topic;
 
-import ch.ttt.memogram.business.topic.TopicService;
-import ch.ttt.memogram.domain.topic.Note;
-import ch.ttt.memogram.domain.topic.Topic;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.UUID;
-
+/*
 @RestController
 @RequestMapping("api/topics")
 public class TopicController {
@@ -51,3 +42,4 @@ public class TopicController {
     }
 
 }
+*/

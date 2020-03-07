@@ -78,19 +78,21 @@ Heroku will use `run` command from `heroku.yml` (resp.
 
 ## Deploy with Heroku Container Registry
 
-### Build Docker Image
+### 1. Build Docker Image
 - add Dockerfile
-- use dockerfile-maven-plugin
+- build manually from cli
+- or use dockerfile-maven-plugin
 
-#### Build manually from cli
+#### 1.a Build manually from cli
 navigate to Dockerfile directory
 
-`$ docker build -t memogram-app .`  
-`$ docker run -p 8080:8080 -t memogram-app`
+`$ docker build -t memogram-app .` 
 
-set $PORT for Heroku in the Dockerfile
+#### 1.b Use dockerfile-maven-plugin
+mvn clean install builds image
 
-`$ docker run -e "PORT=8080" -t memogram-app`
+### 2. run image locally 
+`$ docker run -e "PORT=8080" -e "PROFILES=local" -t memogram-app`
 
 ### Deploy Docker Image to Heroku
 https://dashboard.heroku.com/apps/memogram-trial/deploy/heroku-container

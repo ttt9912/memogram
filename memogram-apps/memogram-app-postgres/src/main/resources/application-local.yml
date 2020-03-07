@@ -8,4 +8,4 @@ spring:
     password: localPW
   jpa:
     hibernate:
-      ddl-auto: update # update: don't drop, create: drop
+      ddl-auto: update # update = don't drop, create = drop
