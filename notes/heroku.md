@@ -8,7 +8,7 @@
 `$ heroku run printenv -a <HEROKU_APP_NAME>` - port, JAVA_OPTS, environment variables, etc.
 
 ### Logs
-`$ heroku logs -a <HEROKU_APP_NAME> -t` - logs as continuous stream
+`$ heroku logs -t -a <HEROKU_APP_NAME>` - logs as continuous stream
 
 ### Stack
 `$ heroku stack:set heroku-18 -a <HEROKU_APP_NAME>` - deploy jar
