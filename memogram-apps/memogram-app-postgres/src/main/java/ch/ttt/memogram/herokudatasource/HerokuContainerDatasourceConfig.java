@@ -9,9 +9,9 @@ import org.springframework.context.annotation.Profile;
 import javax.sql.DataSource;
 import java.util.List;
 
-@Profile("!local")
+@Profile("docker")
 @Configuration
-public class HerokuDatasourceConfig {
+public class HerokuContainerDatasourceConfig {
 
     @Value("${DATABASE_URL}")
     private String herokuDatabaseUrl;
