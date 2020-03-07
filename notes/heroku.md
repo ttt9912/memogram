@@ -1,12 +1,19 @@
 # Heroku CLI
+
+### Info, Env
 `$ heroku apps` - list apps
 
 `$ heroku apps:info -a <HEROKU_APP_NAME>` - url, git, etc.
 
-`$ heroku run printenv -a <HEROKU_APP_NAME>` - port, JAVA_OPTS,
-environment variables, etc.
+`$ heroku run printenv -a <HEROKU_APP_NAME>` - port, JAVA_OPTS, environment variables, etc.
 
+### Logs
 `$ heroku logs -a <HEROKU_APP_NAME> -t` - logs as continuous stream
+
+### Stack
+`$ heroku stack:set heroku-18 -a <HEROKU_APP_NAME>` - deploy jar
+
+`$ heroku stack:set container -a <HEROKU_APP_NAME>` - deploy docker image
 
 
 # Deploy to Heroku
@@ -92,7 +99,7 @@ navigate to Dockerfile directory
 mvn clean install builds image
 
 ### 2. run image locally 
-`$ docker run -e "PORT=8080" -e "PROFILES=local" -t memogram-app`
+`$ docker run -e "PORT=8080" -t memogram-app`
 
 ### Deploy Docker Image to Heroku
 https://dashboard.heroku.com/apps/memogram-trial/deploy/heroku-container
