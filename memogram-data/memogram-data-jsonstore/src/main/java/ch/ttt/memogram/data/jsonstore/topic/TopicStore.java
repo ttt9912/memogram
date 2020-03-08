@@ -2,15 +2,21 @@ package ch.ttt.memogram.data.jsonstore.topic;
 
 import ch.ttt.memogram.data.jsonstore.abstraction.JsonFileStore;
 import ch.ttt.memogram.domain.topic.Topic;
+import ch.ttt.memogram.domain.topic.TopicKey;
+import ch.ttt.memogram.shared.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import java.util.UUID;
-
 @Component
-public class TopicStore extends JsonFileStore<UUID, Topic> {
+public class TopicStore extends JsonFileStore<TopicKey, Topic, TopicJsonElement> {
+
+    protected TopicStore(final Converter<Topic, TopicJsonElement> jsonConverter,
+                         final Converter<TopicJsonElement, Topic> entityConverter,
+                         final Converter<TopicJsonElement, TopicKey> keyConverter) {
+        super(jsonConverter, entityConverter, keyConverter);
+    }
 
     @Override
-    protected Class<Topic> getEntityClass() {
-        return Topic.class;
+    protected Class<TopicJsonElement> getJsonElementClass() {
+        return null;
     }
 }

@@ -1,6 +1,6 @@
 package ch.ttt.memogram.data.jsonstore.task;
 
-import ch.ttt.memogram.data.jsonstore.abstraction.with_jsonelement.JsonElementFileStore;
+import ch.ttt.memogram.data.jsonstore.abstraction.JsonFileStore;
 import ch.ttt.memogram.data.jsonstore.task.converter.TaskJsonElementToTaskConverter;
 import ch.ttt.memogram.data.jsonstore.task.converter.TaskJsonElementToUUIDKeyConverter;
 import ch.ttt.memogram.data.jsonstore.task.converter.TaskToTaskJsonElementConverter;
@@ -9,7 +9,7 @@ import ch.ttt.memogram.domain.task.Task;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TaskStore extends JsonElementFileStore<UUIDKey, Task, TaskJsonElement> {
+public class TaskStore extends JsonFileStore<UUIDKey, Task, TaskJsonElement> {
 
     public TaskStore(final TaskToTaskJsonElementConverter jsonConverter,
                      final TaskJsonElementToTaskConverter entityConverter,

@@ -3,14 +3,13 @@ package ch.ttt.memogram.data.jsonstore.topic;
 import ch.ttt.memogram.data.jsonstore.abstraction.DomainRepositoryImpl;
 import ch.ttt.memogram.data.jsonstore.abstraction.JsonFileStore;
 import ch.ttt.memogram.domain.topic.Topic;
+import ch.ttt.memogram.domain.topic.TopicKey;
 import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
-
 @Repository
-public class TopicRepository extends DomainRepositoryImpl<UUID, Topic> {
+public class TopicRepository extends DomainRepositoryImpl<TopicKey, Topic, TopicJsonElement> {
 
-    protected TopicRepository(final JsonFileStore<UUID, Topic> store) {
+    protected TopicRepository(final JsonFileStore<TopicKey, Topic, TopicJsonElement> store) {
         super(store);
     }
 }

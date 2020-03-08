@@ -3,6 +3,7 @@ package ch.ttt.memogram;
 import ch.ttt.memogram.data.jsonstore.topic.TopicRepository;
 import ch.ttt.memogram.domain.topic.Note;
 import ch.ttt.memogram.domain.topic.Topic;
+import ch.ttt.memogram.domain.topic.TopicKey;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 
 import java.util.List;
-import java.util.UUID;
 
 @SpringBootApplication
 public class MemogramJsonStoreApp {
@@ -41,19 +41,14 @@ public class MemogramJsonStoreApp {
             topicRepository.findAll().forEach(System.out::println);
 
             final Topic topic = createDummyTopic();
-            // topicRepository.save(topic);
+            topicRepository.save(topic);
         };
     }
 
     private Topic createDummyTopic() {
-        final Note note1 = new Note();
-        note1.setText("buy clothes");
-        final Note note2 = new Note();
-        note2.setText("buy socks");
-        final Topic topic = new Topic();
-        topic.setKey(UUID.randomUUID());
-        topic.setTitle("Test2");
-        topic.setNotes(List.of(note1, note2));
+        final Topic topic = new Topic(TopicKey.generate(),
+                "Test2",
+                List.of(new Note("buy clothes"), new Note("buy socks")));
         return topic;
     }
 }

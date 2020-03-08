@@ -1,8 +1,8 @@
 package ch.ttt.memogram.domain.topic;
 
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 public class Note {
     private String text;
 }

@@ -3,16 +3,15 @@ package ch.ttt.memogram.domain.topic;
 import ch.ttt.memogram.domain.abstraction.DomainEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
-import java.util.UUID;
 
 @Data
-@NoArgsConstructor
+@RequiredArgsConstructor
 @AllArgsConstructor
-public class Topic implements DomainEntity<UUID> {
-    private UUID key;
+public class Topic implements DomainEntity<TopicKey> {
+    private final TopicKey key;
     private String title;
     private List<Note> notes;
 }

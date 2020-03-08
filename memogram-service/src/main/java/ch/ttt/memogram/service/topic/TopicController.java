@@ -1,6 +1,16 @@
 package ch.ttt.memogram.service.topic;
 
-/*
+
+import ch.ttt.memogram.business.topic.TopicService;
+import ch.ttt.memogram.domain.topic.Note;
+import ch.ttt.memogram.domain.topic.Topic;
+import ch.ttt.memogram.domain.topic.TopicKey;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @RestController
 @RequestMapping("api/topics")
 public class TopicController {
@@ -19,7 +29,7 @@ public class TopicController {
     }
 
     @GetMapping("/{key}")
-    public ResponseEntity<Topic> findByKey(@PathVariable final UUID key) throws InterruptedException {
+    public ResponseEntity<Topic> findByKey(@PathVariable final TopicKey key) throws InterruptedException {
         Thread.sleep(1000);
         return topicService.findByKey(key)
                 .map(ResponseEntity::ok)
@@ -27,7 +37,7 @@ public class TopicController {
     }
 
     @PostMapping
-    public UUID create(@RequestBody final String title) {
+    public TopicKey create(@RequestBody final String title) {
         return topicService.createAndSave(title);
     }
 
@@ -37,9 +47,7 @@ public class TopicController {
     }
 
     @PatchMapping("/{key}")
-    public void update(@PathVariable final UUID key, @RequestBody final Note note) {
+    public void update(@PathVariable final TopicKey key, @RequestBody final Note note) {
         topicService.addNote(key, note);
     }
-
 }
-*/

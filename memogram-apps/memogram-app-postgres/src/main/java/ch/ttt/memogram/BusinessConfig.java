@@ -4,7 +4,9 @@ import ch.ttt.memogram.business.task.command.TaskCommandService;
 import ch.ttt.memogram.business.task.command.converter.TaskCreateCommandToTaskConverter;
 import ch.ttt.memogram.business.task.command.converter.TaskUpdateCommandToTaskConverter;
 import ch.ttt.memogram.business.task.query.TaskQueryService;
+import ch.ttt.memogram.business.topic.TopicService;
 import ch.ttt.memogram.datajpa.task.TaskRepositoryImpl;
+import ch.ttt.memogram.datajpa.topic.TopicRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -29,10 +31,8 @@ public class BusinessConfig {
         return new TaskCommandService(taskRepository, taskCreateCommandToTaskConverter(), taskUpdateCommandToTaskConverter());
     }
 
-    /*
     @Bean
-    public TopicService topicService(TopicRepository topicRepository) {
+    public TopicService topicService(final TopicRepository topicRepository) {
         return new TopicService(topicRepository);
     }
-     */
 }

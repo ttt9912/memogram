@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
-public abstract class DomainRepositoryImpl<KEY, ENTITY extends DomainEntity<KEY>> implements DomainRepository<KEY, ENTITY> {
-    private final JsonFileStore<KEY, ENTITY> store;
+public abstract class DomainRepositoryImpl<KEY, ENTITY extends DomainEntity<KEY>, JSON_DTO> implements DomainRepository<KEY, ENTITY> {
+    private final JsonFileStore<KEY, ENTITY, JSON_DTO> store;
 
     @Override
     public List<ENTITY> findAll() {

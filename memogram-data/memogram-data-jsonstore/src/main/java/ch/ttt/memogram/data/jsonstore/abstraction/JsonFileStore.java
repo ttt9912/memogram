@@ -3,6 +3,7 @@ package ch.ttt.memogram.data.jsonstore.abstraction;
 import ch.ttt.memogram.data.jsonstore.jsonio.JsonExportService;
 import ch.ttt.memogram.data.jsonstore.jsonio.JsonImportService;
 import ch.ttt.memogram.domain.abstraction.DomainEntity;
+import ch.ttt.memogram.shared.converter.Converter;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,8 +14,11 @@ import java.util.*;
 
 @Slf4j
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
-public abstract class JsonFileStore<KEY, ENTITY extends DomainEntity<KEY>> {
+public abstract class JsonFileStore<KEY, ENTITY extends DomainEntity<KEY>, JSON_ELEMENT> {
     private final Map<KEY, ENTITY> store = new HashMap<>();
+    private final Converter<ENTITY, JSON_ELEMENT> jsonConverter;
+    private final Converter<JSON_ELEMENT, ENTITY> entityConverter;
+    private final Converter<JSON_ELEMENT, KEY> keyConverter;
 
     @Autowired
     private JsonImportService jsonImportService;
@@ -31,7 +35,10 @@ public abstract class JsonFileStore<KEY, ENTITY extends DomainEntity<KEY>> {
                 , this.getClass().getSimpleName(), getFilename());
         log.info("init Store {}", this.getClass().getSimpleName());
 
-        read().forEach(entity -> store.put(entity.getKey(), entity));
+        read().forEach(jsonElement -> store.put(
+                keyConverter.convert(jsonElement),
+                entityConverter.convert(jsonElement))
+        );
     }
 
     public Collection<ENTITY> values() {
@@ -44,10 +51,14 @@ public abstract class JsonFileStore<KEY, ENTITY extends DomainEntity<KEY>> {
 
     public synchronized void save(final ENTITY entity) {
         store.put(entity.getKey(), entity);
-        persist(store.values());
+        persist(jsonConverter.convertAll(store.values()));
     }
 
-    private void persist(final Collection<ENTITY> elements) {
+    private void persist(final List<JSON_ELEMENT> elements) {
+        log.info("\n---------------------------------------" +
+                        "\n writing file '{}'" +
+                        "\n---------------------------------------"
+                , getFilename());
         jsonExportService.writeFile(getFilename(), elements);
     }
 
@@ -55,14 +66,14 @@ public abstract class JsonFileStore<KEY, ENTITY extends DomainEntity<KEY>> {
         store.remove(key);
     }
 
-    private List<ENTITY> read() {
-        return jsonImportService.readFile(getFilename(), getEntityClass());
+    private List<JSON_ELEMENT> read() {
+        return jsonImportService.readFile(getFilename(), getJsonElementClass());
     }
 
     private String getFilename() {
-        return String.join(".", getEntityClass().getSimpleName().toLowerCase(), "json");
+        return String.join(".", getJsonElementClass().getSimpleName().toLowerCase(), "json");
     }
 
-    protected abstract Class<ENTITY> getEntityClass();
+    protected abstract Class<JSON_ELEMENT> getJsonElementClass();
 
 }
