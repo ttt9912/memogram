@@ -97,7 +97,6 @@
                         <configuration>
                             <repository>ttt9912/${project.artifactId}</repository>
                             <tag>memogram-${project.version}</tag>
-                            <skipDockerInfo>true</skipDockerInfo>
                         </configuration>
                     </plugin>
                 </plugins>

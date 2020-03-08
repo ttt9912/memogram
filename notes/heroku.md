@@ -99,7 +99,12 @@ navigate to Dockerfile directory
 mvn clean install builds image
 
 ### 2. run image locally 
-`$ docker run -e "PORT=8080" -t memogram-app`
+```
+$ docker run \
+    -e "PORT=8080" \
+    -e "DATABASE_URL=postgres://rsahifemdogmth:895447174f65bc6b0abfcd09e734c6b1ce1dc363f5cd44889fb0e8a267f82cbf@ec2-184-72-236-57.compute-1.amazonaws.com:5432/dritngcbkq7ka" \
+    <IMAGE_ID>
+```
 
 ### Deploy Docker Image to Heroku
 https://dashboard.heroku.com/apps/memogram-trial/deploy/heroku-container
