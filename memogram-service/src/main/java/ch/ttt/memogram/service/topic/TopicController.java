@@ -1,11 +1,9 @@
 package ch.ttt.memogram.service.topic;
 
-
 import ch.ttt.memogram.business.topic.TopicService;
 import ch.ttt.memogram.domain.topic.Note;
 import ch.ttt.memogram.domain.topic.Topic;
 import ch.ttt.memogram.domain.topic.TopicKey;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,11 +13,9 @@ import java.util.List;
 @RequestMapping("api/topics")
 public class TopicController {
     private final TopicService topicService;
-    private final ObjectMapper objectMapper;
 
-    public TopicController(final TopicService topicService, final ObjectMapper objectMapper) {
+    public TopicController(final TopicService topicService) {
         this.topicService = topicService;
-        this.objectMapper = objectMapper;
     }
 
     @GetMapping
