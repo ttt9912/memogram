@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {TopicDataService} from '../../../data/topic/topic-data.service';
-import {Note, Topic} from '../../../generated/memogram-services';
 import {Observable} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
+import {Topic} from '../../../generated/memogram-services';
 
 @Component({
   selector: 'app-topic-detail',
@@ -12,27 +12,21 @@ import {ActivatedRoute} from '@angular/router';
 export class TopicDetailComponent implements OnInit {
   topic$: Observable<Topic>;
 
-  topic: Topic;
+  private id: string;
 
   constructor(private topicDataService: TopicDataService,
               private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    const key = this.route.snapshot.paramMap.get('key');
-    this.topic$ = this.topicDataService.findByKey(key);
-
-    this.topicDataService.findByKey(key)
-      .subscribe(topic => this.topic = topic);
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.topic$ = this.topicDataService.findById(this.id);
   }
 
   createNote($event: string) {
-    const note: Note = {text: $event};
-    this.topicDataService.createNote(this.topic.key, note).subscribe(
+    this.topicDataService.createNote(this.id, $event).subscribe(
       () => {
-        // this.topic$ = this.topicDataService.findByKey(key);
-        this.topicDataService.findByKey(this.topic.key)
-          .subscribe(topic => this.topic = topic);
+        this.topic$ = this.topicDataService.findById(this.id);
       }
     );
   }

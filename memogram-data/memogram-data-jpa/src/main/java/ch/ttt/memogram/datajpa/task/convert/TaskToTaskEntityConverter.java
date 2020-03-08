@@ -15,6 +15,7 @@ public class TaskToTaskEntityConverter implements Converter<Task, TaskEntity> {
         taskEntity.setUuid(element.getKey().getId());
         taskEntity.setTitle(element.getTitle());
         taskEntity.setDeadline(element.getDeadline());
+        taskEntity.setDeleted(element.getDeleted());
         return taskEntity;
     }
 }

@@ -10,10 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class TaskRepositoryImpl extends DomainRepositoryImpl<UUIDKey, Task, String, TaskEntity> {
 
-    public TaskRepositoryImpl(final CrudRepository<TaskEntity, String> repository,
-                              final Converter<TaskEntity, Task> taskEntityTaskConverter,
-                              final Converter<Task, TaskEntity> ormEntityConverter,
-                              final Converter<UUIDKey, String> idConverter) {
-        super(repository, taskEntityTaskConverter, ormEntityConverter, idConverter);
+    public TaskRepositoryImpl(final CrudRepository<TaskEntity, String> repository, final Converter<TaskEntity, Task> taskEntityTaskConverter, final Converter<UUIDKey, String> uuidKeyStringConverter, final Converter<Task, TaskEntity> ormEntityConverter) {
+        super(repository, taskEntityTaskConverter, uuidKeyStringConverter, ormEntityConverter);
     }
 }

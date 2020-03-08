@@ -12,14 +12,15 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-@EqualsAndHashCode(of = "key")
-public class Task implements DomainEntity<UUIDKey> {
+@EqualsAndHashCode(of = "key", callSuper = true)
+public class Task extends DomainEntity<UUIDKey> {
     private final UUIDKey key;
     private String title;
     private LocalDateTime deadline;
     private List<Tag> tags;
+    private Boolean deleted;
 
     public static Task from(final String title, final LocalDateTime deadline, final List<Tag> tags) {
-        return new Task(UUIDKey.generate(), title, deadline, tags);
+        return new Task(UUIDKey.generate(), title, deadline, tags, false);
     }
 }

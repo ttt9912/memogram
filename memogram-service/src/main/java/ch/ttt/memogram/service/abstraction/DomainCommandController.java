@@ -12,7 +12,7 @@ public abstract class DomainCommandController<KEY, ENTITY extends DomainEntity<K
     private final DomainCommandService<KEY, ENTITY, CREATE_COMMAND, UPDATE_COMMAND> commandService;
     private final Converter<String, KEY> keyConverter;
 
-    @PostMapping()
+    @PostMapping
     public void create(@RequestBody final CREATE_COMMAND command) {
         commandService.create(command);
     }

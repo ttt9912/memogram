@@ -12,6 +12,6 @@ public abstract class DomainQueryService<KEY, ENTITY extends DomainEntity<KEY>> 
     private final DomainRepository<KEY, ENTITY> repository;
 
     public Collection<ENTITY> findAll() {
-        return repository.findAll();
+        return repository.find();
     }
 }

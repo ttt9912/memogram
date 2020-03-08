@@ -16,7 +16,38 @@
     <div class="card">
       <ul class="list-group list-group-flush">
         <li *ngFor="let topic of request.value" class="list-group-item">
-          <a routerLink="/topics/{{topic.key}}">{{topic.title}}</a>
+          <div style="display: flex; justify-content: space-between"> <!-- TODO: separate component -->
+            <a routerLink="/app/topics/{{topic.key.id}}">{{topic.title}}</a>
+            <span (click)="delete(topic.key.id)" class="hyperlink blue">Delete</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </ng-template>
+</div>
+
+<hr/><!-- deleted topics -->
+<h3>Deleted:</h3>
+
+<div *ngIf="deletedTopics$ | requestTracker | async as request">
+  <ng-template [ngIf]="request.loading">
+    <div class="spinner">
+      <i class="fas fa-atom fa-spin fa-4x"></i>
+    </div>
+  </ng-template>
+
+  <ng-template [ngIf]="request.error">
+    <div>ERROR! {{request.error.message}}</div>
+  </ng-template>
+
+  <ng-template [ngIf]="request.value">
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        <li *ngFor="let topic of request.value" class="list-group-item">
+          <div style="display: flex; justify-content: space-between"> <!-- TODO: separate component -->
+            <a class="hyperlink red" routerLink="/app/topics/{{topic.key.id}}">{{topic.title}}</a>
+            <span (click)="restore(topic.key.id)" class="hyperlink red">Restore</span>
+          </div>
         </li>
       </ul>
     </div>

@@ -19,6 +19,7 @@ public class TaskJsonElementToTaskConverter implements Converter<TaskJsonElement
         return new Task(keyConverter.convert(element),
                 element.getTitle(),
                 element.getDeadline(),
-                Converter.convertList(element.getTags(), Tag::new));
+                Converter.convertList(element.getTags(), Tag::new),
+                false); // TODO: deleted property
     }
 }

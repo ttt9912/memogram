@@ -21,15 +21,20 @@ public class TopicController {
     @GetMapping
     public List<Topic> findAll() throws InterruptedException {
         Thread.sleep(1000);
-        return topicService.findAll();
+        return topicService.find();
     }
 
-    @GetMapping("/{key}")
-    public ResponseEntity<Topic> findByKey(@PathVariable final TopicKey key) throws InterruptedException {
+    @GetMapping("/{id}")
+    public ResponseEntity<Topic> findByKey(@PathVariable final String id) throws InterruptedException {
         Thread.sleep(1000);
-        return topicService.findByKey(key)
+        return topicService.find(new TopicKey(id))
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/deleted")
+    public List<Topic> findDeleted() {
+        return topicService.findDeleted();
     }
 
     @PostMapping
@@ -37,13 +42,13 @@ public class TopicController {
         return topicService.createAndSave(title);
     }
 
-    @PutMapping
-    public void update(@RequestBody final Topic topic) {
-        topicService.save(topic);
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable final String id) {
+        topicService.delete(new TopicKey(id));
     }
 
-    @PatchMapping("/{key}")
-    public void update(@PathVariable final TopicKey key, @RequestBody final Note note) {
-        topicService.addNote(key, note);
+    @PatchMapping("/{id}")
+    public void update(@PathVariable final String id, @RequestBody final String note) {
+        topicService.addNote(new TopicKey(id), new Note(note));
     }
 }

@@ -7,14 +7,31 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class DomainRepositoryImpl<KEY, ENTITY extends DomainEntity<KEY>, JSON_DTO> implements DomainRepository<KEY, ENTITY> {
     private final JsonFileStore<KEY, ENTITY, JSON_DTO> store;
 
     @Override
-    public List<ENTITY> findAll() {
-        return List.copyOf(store.values());
+    public List<ENTITY> find() {
+        return findEntities(false);
+    }
+
+    @Override
+    public Optional<ENTITY> find(final KEY key) {
+        return findEntity(key, false);
+    }
+
+    @Override
+    public List<ENTITY> findDeleted() {
+        return findEntities(true);
+    }
+
+    @Override
+    public Optional<ENTITY> findDeleted(final KEY key) {
+        return findEntity(key, true);
     }
 
     @Override
@@ -22,13 +39,19 @@ public abstract class DomainRepositoryImpl<KEY, ENTITY extends DomainEntity<KEY>
         store.save(entity);
     }
 
-    @Override
-    public Optional<ENTITY> findByKey(final KEY key) {
-        return store.value(key);
+    private List<ENTITY> findEntities(final boolean deleted) {
+        final List<ENTITY> entities = store.values().stream()
+                .filter(deleted(deleted))
+                .collect(Collectors.toList());
+        return List.copyOf(entities);
     }
 
-    @Override
-    public void remove(final KEY key) {
-        store.remove(key);
+    private Optional<ENTITY> findEntity(final KEY key, final boolean deleted) {
+        return store.value(key)
+                .filter(deleted(deleted));
+    }
+
+    private Predicate<? super ENTITY> deleted(final boolean deleted) {
+        return entity -> entity.getDeleted().equals(deleted);
     }
 }

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Note, Topic} from '../../generated/memogram-services';
 import {HttpClient} from '@angular/common/http';
+import {Topic, TopicKey} from '../../generated/memogram-services';
 
 @Injectable({
   providedIn: 'root'
@@ -16,15 +16,23 @@ export class TopicDataService {
     return this.http.get<Topic[]>(this.url);
   }
 
-  findByKey(key): Observable<Topic> {
-    return this.http.get<Topic>(`${this.url}/${key}`);
+  findById(id: string): Observable<Topic> {
+    return this.http.get<Topic>(`${this.url}/${id}`);
   }
 
-  create(title: string): Observable<string> { // todo TopicKey
-    return this.http.post<string>(this.url, title);
+  findDeleted(): Observable<Topic[]> {
+    return this.http.get<Topic[]>(`${this.url}/deleted`);
   }
 
-  createNote(topicKey: string, note: Note): Observable<any> { // todo TopicKey
-    return this.http.patch(`${this.url}/${topicKey}`, note);
+  create(title: string): Observable<TopicKey> {
+    return this.http.post<TopicKey>(this.url, title);
+  }
+
+  createNote(topicId: string, note: string): Observable<any> {
+    return this.http.patch(`${this.url}/${topicId}`, note);
+  }
+
+  delete(topicId: string): Observable<any> {
+    return this.http.delete(`${this.url}/${topicId}`);
   }
 }

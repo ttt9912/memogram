@@ -9,7 +9,7 @@ const routes: Routes = [
   {path: 'app', redirectTo: '/app/tasks', pathMatch: 'full'},
   {path: 'app/tasks', component: TaskListComponent},
   {path: 'app/topics', component: TopicListComponent},
-  {path: 'app/topics/:key', component: TopicDetailComponent}
+  {path: 'app/topics/:id', component: TopicDetailComponent}
 ];
 
 @NgModule({

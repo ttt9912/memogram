@@ -12,4 +12,5 @@ public class TaskUpdateCommand {
     private String title;
     private LocalDateTime deadline;
     private List<Tag> tags;
+    private Boolean deleted;
 }

@@ -14,7 +14,14 @@ public abstract class DomainCommandService<KEY, ENTITY extends DomainEntity<KEY>
     private final Converter<UPDATE_COMMAND, ENTITY> updateEntityConverter;
 
     public void delete(final KEY key) {
-        repository.remove(key);
+        repository.find(key).ifPresentOrElse(
+                this::setDeleted,
+                this::throwException);
+    }
+
+    private void setDeleted(final ENTITY entity) {
+        entity.setDeleted(true);
+        repository.save(entity);
     }
 
     public void create(final CREATE_COMMAND command) {
@@ -23,7 +30,7 @@ public abstract class DomainCommandService<KEY, ENTITY extends DomainEntity<KEY>
 
     public void update(final UPDATE_COMMAND command) {
         final ENTITY entity = updateEntityConverter.convert(command);
-        repository.findByKey(entity.getKey()).ifPresentOrElse(
+        repository.find(entity.getKey()).ifPresentOrElse(
                 existing -> repository.save(entity),
                 this::throwException);
     }

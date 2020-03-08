@@ -13,7 +13,8 @@ public class TopicEntityToTopicConverter implements Converter<TopicEntity, Topic
     @Override
     public Topic convert(final TopicEntity element) {
         return new Topic(convertKey(element.getId()), element.getTitle(),
-                Converter.convertList(element.getNotes(), Note::new));
+                Converter.convertList(element.getNotes(), Note::new),
+                element.getDeleted());
     }
 
     private TopicKey convertKey(final String id) {

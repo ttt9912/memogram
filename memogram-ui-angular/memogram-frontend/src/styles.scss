@@ -13,3 +13,19 @@ body {
   display: flex;
   justify-content: center;
 }
+
+.hyperlink {
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.hyperlink.blue {
+  color: #0080ff;
+}
+
+.hyperlink.red {
+  color: red;
+}

@@ -15,6 +15,7 @@ public class TaskEntityToTaskConverter implements Converter<TaskEntity, Task> {
         return new Task(UUIDKey.from(element.getUuid()),
                 element.getTitle(),
                 element.getDeadline(),
-                Converter.convertList(element.getTags(), Tag::new));
+                Converter.convertList(element.getTags(), Tag::new),
+                element.getDeleted());
     }
 }

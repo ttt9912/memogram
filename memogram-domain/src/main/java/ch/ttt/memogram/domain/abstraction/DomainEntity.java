@@ -1,5 +1,12 @@
 package ch.ttt.memogram.domain.abstraction;
 
-public interface DomainEntity<KEY> {
-    KEY getKey();
+import lombok.Data;
+
+@Data
+public abstract class DomainEntity<KEY> {
+    public abstract Boolean getDeleted();
+
+    public abstract void setDeleted(final Boolean deleted);
+
+    public abstract KEY getKey();
 }

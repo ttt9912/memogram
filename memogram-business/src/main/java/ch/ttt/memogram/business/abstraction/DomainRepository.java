@@ -6,11 +6,18 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DomainRepository<KEY, ENTITY extends DomainEntity<KEY>> {
-    List<ENTITY> findAll();
+    List<ENTITY> find();
+
+    Optional<ENTITY> find(KEY key);
+
+    List<ENTITY> findDeleted();
+
+    Optional<ENTITY> findDeleted(KEY key);
 
     void save(ENTITY entity);
 
-    Optional<ENTITY> findByKey(KEY key);
-
-    void remove(KEY key);
+    // TODO
+    // delete(id)
+    // restore(id)
+    // remove(id) noop
 }

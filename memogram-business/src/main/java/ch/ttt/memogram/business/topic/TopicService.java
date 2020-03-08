@@ -19,7 +19,6 @@ public class TopicService extends DomainCRUDService<TopicKey, Topic> {
         this.repository = repository;
     }
 
-
     public TopicKey createAndSave(final String title) {
         final Topic topic = createTopic(title, TopicKey.generate(), Collections.emptyList());
         repository.save(topic);
@@ -27,16 +26,13 @@ public class TopicService extends DomainCRUDService<TopicKey, Topic> {
     }
 
     public void addNote(final TopicKey key, final Note note) {
-        final Topic existing = repository.findByKey(key).orElseThrow(() -> new RuntimeException("Topic does not exist"));
+        final Topic existing = repository.find(key).orElseThrow(() -> new RuntimeException("Topic does not exist"));
         final Topic topic = createTopic(existing.getTitle(), existing.getKey(), combine(existing.getNotes(), note));
         repository.save(topic);
     }
 
-    private Topic createTopic(final String title, final TopicKey key, final List<Note> objects) {
-        final Topic topic = new Topic(key);
-        topic.setTitle(title);
-        topic.setNotes(objects);
-        return topic;
+    private Topic createTopic(final String title, final TopicKey key, final List<Note> notes) {
+        return new Topic(key, title, notes, false);
     }
 
     private List<Note> combine(final List<Note> existing, final Note note) {
