@@ -2,11 +2,13 @@ package ch.ttt.memogram.domain.abstraction;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 public abstract class DomainEntity<KEY> {
-    public abstract Boolean getDeleted();
-
-    public abstract void setDeleted(final Boolean deleted);
+    private Boolean deleted;
+    private LocalDateTime created;
+    private LocalDateTime modified;
 
     public abstract KEY getKey();
 }

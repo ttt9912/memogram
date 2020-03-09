@@ -1,7 +1,7 @@
 package ch.ttt.memogram.business.topic;
 
-import ch.ttt.memogram.business.abstraction.DomainCRUDService;
 import ch.ttt.memogram.business.abstraction.DomainRepository;
+import ch.ttt.memogram.business.abstraction.DomainService;
 import ch.ttt.memogram.domain.topic.Note;
 import ch.ttt.memogram.domain.topic.Topic;
 import ch.ttt.memogram.domain.topic.TopicKey;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class TopicService extends DomainCRUDService<TopicKey, Topic> {
+public class TopicService extends DomainService<TopicKey, Topic> {
     private final DomainRepository<TopicKey, Topic> repository;
 
     public TopicService(final DomainRepository<TopicKey, Topic> repository) {
@@ -32,7 +32,7 @@ public class TopicService extends DomainCRUDService<TopicKey, Topic> {
     }
 
     private Topic createTopic(final String title, final TopicKey key, final List<Note> notes) {
-        return new Topic(key, title, notes, false);
+        return new Topic(key, title, notes);
     }
 
     private List<Note> combine(final List<Note> existing, final Note note) {

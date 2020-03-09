@@ -15,7 +15,6 @@ public class TopicJsonElementToTopicConverter implements Converter<TopicJsonElem
     public Topic convert(final TopicJsonElement element) {
         return new Topic(new TopicKey(element.getId()),
                 element.getTitle(),
-                Converter.convertList(element.getNotes(), Note::new),
-                false); // TODO: deleted property
+                Converter.convertList(element.getNotes(), Note::new)); // TODO: deleted property
     }
 }

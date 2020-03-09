@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
-public abstract class DomainCRUDService<KEY, ENTITY extends DomainEntity<KEY>> {
+public abstract class DomainService<KEY, ENTITY extends DomainEntity<KEY>> {
     private final DomainRepository<KEY, ENTITY> repository;
 
     public List<ENTITY> find() {

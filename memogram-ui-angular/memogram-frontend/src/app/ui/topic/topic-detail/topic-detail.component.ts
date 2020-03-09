@@ -11,6 +11,7 @@ import {Topic} from '../../../generated/memogram-services';
 })
 export class TopicDetailComponent implements OnInit {
   topic$: Observable<Topic>;
+  topic: Topic;
 
   private id: string;
 
@@ -20,14 +21,21 @@ export class TopicDetailComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
-    this.topic$ = this.topicDataService.findById(this.id);
+    this.loadTopic();
   }
 
   createNote($event: string) {
     this.topicDataService.createNote(this.id, $event).subscribe(
-      () => {
-        this.topic$ = this.topicDataService.findById(this.id);
-      }
+      () => this.loadTopic()
     );
+  }
+
+  private loadTopic() {
+    // observable - interrupts ui
+    this.topic$ = this.topicDataService.findById(this.id);
+
+    // non observable // TODO: track via calltracker (non pipe)
+    this.topicDataService.findById(this.id)
+      .subscribe(res => this.topic = res);
   }
 }

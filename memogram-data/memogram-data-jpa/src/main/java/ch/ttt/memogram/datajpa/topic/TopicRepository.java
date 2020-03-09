@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class TopicRepository extends DomainRepositoryImpl<TopicKey, Topic, String, TopicEntity> {
 
-    public TopicRepository(final CrudRepository<TopicEntity, String> repository, final Converter<TopicEntity, Topic> topicEntityTopicConverter, final Converter<TopicKey, String> topicKeyStringConverter, final Converter<Topic, TopicEntity> ormEntityConverter) {
-        super(repository, topicEntityTopicConverter, topicKeyStringConverter, ormEntityConverter);
+    protected TopicRepository(final CrudRepository<TopicEntity, String> repository, final Converter<Topic, TopicEntity> ormEntityConverter, final Converter<TopicKey, String> topicKeyStringConverter, final Converter<TopicEntity, Topic> entityConverter) {
+        super(repository, ormEntityConverter, topicKeyStringConverter, entityConverter);
     }
 }

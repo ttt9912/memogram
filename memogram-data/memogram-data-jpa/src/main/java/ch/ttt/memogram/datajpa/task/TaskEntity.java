@@ -2,6 +2,7 @@ package ch.ttt.memogram.datajpa.task;
 
 import ch.ttt.memogram.datajpa.abstraction.ORMEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ import static javax.persistence.FetchType.EAGER;
 
 @Data
 @Entity
+@EqualsAndHashCode(callSuper = true)
 public class TaskEntity extends ORMEntity {
     @Id
     private String uuid;

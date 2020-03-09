@@ -14,6 +14,4 @@ public class Topic extends DomainEntity<TopicKey> {
     private final TopicKey key;
     private String title;
     private List<Note> notes;
-    // TODO: @NonNull (maybe on super?)
-    private Boolean deleted;
 }

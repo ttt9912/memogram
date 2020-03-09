@@ -24,8 +24,7 @@ public class TopicJsonElement implements JsonElement<TopicKey, Topic> {
 
     public Topic createEntity() {
         return new Topic(new TopicKey(this.getId()), this.getTitle(),
-                Converter.convertList(this.getNotes(), Note::new),
-                false); // TODO: deleted field on jsonelement
+                Converter.convertList(this.getNotes(), Note::new)); // TODO: deleted field on jsonelement
     }
 
     public TopicKey createKey() {

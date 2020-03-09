@@ -12,8 +12,8 @@ import java.util.List;
 import static javax.persistence.FetchType.EAGER;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Entity
+@EqualsAndHashCode(callSuper = true)
 public class TopicEntity extends ORMEntity {
 
     @Id
