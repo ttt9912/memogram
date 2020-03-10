@@ -1,9 +1,15 @@
-<div *ngIf="topic; else spinner">
+<div *ngIf="loadTopicRequest.error" class="alert alert-danger" role="alert">
+  <strong>Error</strong>
+  {{loadTopicRequest.error.message}}
+</div>
+
+
+<div *ngIf="topic">
   <div *ngIf="topic.notes">
     <div>
       <h2>{{topic.title}} Non Observable</h2>
     </div>
-    <app-input (submitted)="createNote($event)"></app-input>
+    <app-input (submitted)="createNote($event)" [callActive]="loadTopicRequest.loading"></app-input>
     <div *ngFor="let note of topic.notes" class="card">
       <div class="card-body">
         {{note.text}}
@@ -11,36 +17,3 @@
     </div>
   </div>
 </div>
-
-<div *ngIf="topic$ | requestTracker | async as request">
-
-  <ng-template [ngIf]="request.loading">
-    <div class="spinner">
-      <i class="fas fa-atom fa-spin fa-4x"></i>
-    </div>
-  </ng-template>
-
-  <ng-template [ngIf]="request.error">
-    <div>ERROR! {{request.error.message}}</div>
-  </ng-template>
-
-  <ng-template [ngIf]="request.value" let-topic>
-    <div *ngIf="topic.notes">
-      <div>
-        <h2>{{topic.title}} Observable</h2>
-      </div>
-      <app-input (submitted)="createNote($event)"></app-input>
-      <div *ngFor="let note of topic.notes" class="card">
-        <div class="card-body">
-          {{note.text}}
-        </div>
-      </div>
-    </div>
-  </ng-template>
-</div>
-
-<ng-template #spinner>
-  <div class="spinner">
-    <i class="fas fa-atom fa-spin fa-4x"></i>
-  </div>
-</ng-template>

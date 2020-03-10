@@ -4,5 +4,6 @@ import lombok.Value;
 
 @Value
 public class Note {
-    private String text;
+    private final String text;
+
 }

@@ -3,6 +3,7 @@ import {TopicDataService} from '../../../data/topic/topic-data.service';
 import {Observable} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {Topic} from '../../../generated/memogram-services';
+import {RequestTracker} from '../../../common/request-tracker';
 
 @Component({
   selector: 'app-topic-detail',
@@ -12,6 +13,8 @@ import {Topic} from '../../../generated/memogram-services';
 export class TopicDetailComponent implements OnInit {
   topic$: Observable<Topic>;
   topic: Topic;
+
+  loadTopicRequest = new RequestTracker<Topic>();
 
   private id: string;
 
@@ -31,11 +34,7 @@ export class TopicDetailComponent implements OnInit {
   }
 
   private loadTopic() {
-    // observable - interrupts ui
-    this.topic$ = this.topicDataService.findById(this.id);
-
-    // non observable // TODO: track via calltracker (non pipe)
-    this.topicDataService.findById(this.id)
+    this.loadTopicRequest.execute(this.topicDataService.findById(this.id))
       .subscribe(res => this.topic = res);
   }
 }

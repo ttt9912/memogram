@@ -1,8 +1,15 @@
 <form (submit)="submit()" [formGroup]="inputForm">
   <div style="display: flex">
     <input class="form-control" formControlName="input" type="text">
+
     <button *ngIf="!inputForm.invalid" class="btn btn-dark" type="submit">
       <i class="fas fa-angle-double-right"></i>
+    </button>
+
+    <button *ngIf="callActive" class="btn btn-dark" disabled>
+      <div class="spinner">
+        <i class="fas fa-atom fa-spin"></i>
+      </div>
     </button>
   </div>
 </form>
