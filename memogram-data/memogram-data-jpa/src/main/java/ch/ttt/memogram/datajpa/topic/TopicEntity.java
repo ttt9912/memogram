@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OrderBy;
 import java.util.List;
 
 import static javax.persistence.FetchType.EAGER;
@@ -21,5 +22,6 @@ public class TopicEntity extends ORMEntity {
     private String title;
 
     @ElementCollection(fetch = EAGER)
-    private List<String> notes;
+    @OrderBy("createdAt ASC")
+    private List<NoteEntity> notes;
 }
